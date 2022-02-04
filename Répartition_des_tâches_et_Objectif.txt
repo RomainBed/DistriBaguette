@@ -1,0 +1,12 @@
+Objectif : 							Répartition des tâches :	Durée de la tâche :
+
+Diagramme de GANTT						Nom : Younes			Durée : 1 heure
+
+1 : Database --> MCD						Nom : Anthony			Durée : 2 heures
+	     --> SQL						Nom : Anthony			Durée :	2 heures
+	     --> Peupler					Nom : Younes			Durée : 2 heures
+
+2 : Site Web --> HTML ( responsive )				Nom : Romain / Florian		Durée : 2 heures
+	     --> CSS  ( Bootstrap, Matrialing )			Nom : Romain 			Durée : 2 heures
+	     --> PHP  ( Hyle Tpl )				Nom : Florian			Durée : 2 heures
+
