@@ -1,0 +1,78 @@
+html {
+  height:100%;
+  background-image: linear-gradient(to right top, #f5dfb0 0%, #858d92 100%);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.logo {
+  background-image: url(Logo.png);
+  text-align: center; 
+}
+
+nav {
+  max-width: 960px;
+  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  margin: auto;
+
+}
+
+nav ul {
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+h2{
+  text-align: center;
+}
+
+
+.liste{
+  line-height: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+ol {
+  counter-reset: li; 
+  list-style: none; 
+  padding: 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol a {
+  position: relative;
+  display: block;
+  padding: .4em .4em .4em 2em;
+  margin: .5em 0;
+  background: #DAD2CA;
+  color: #444;
+  text-decoration: none;
+  border-radius: .3em;
+}
+
+ol a:hover { background: #E9E4E0; }
+ol a:hover:before { transform: rotate(360deg); }
+ol a:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -1.3em;               
+  top: 50%;                   /*Réglage de niveau*/
+  margin-top: -1.3em;         /*Centre l'ensemble avec la liste*/
+  background: #f9dd94;      /*Courleur du fond des numéro*/
+  height: 2em;                /*Hauteur des cercles*/
+  width: 2em;                 /*Largeur des cercles*/
+  line-height: 2em;           /*Pour centrer les numero*/
+  border: .3em solid #fff;  /*Bordure des numéro*/
+  text-align: center;         /*Centrage du texte*/
+  font-weight: bold;          /*Police de numero en gras*/
+  border-radius: 2em;         /*Arrondi les contour de numero de liste*/
+}
+
