@@ -1,13 +1,14 @@
 <?php	
-	$hostname = "172.20.233.53/bdd";
-	$username = "root";
-	$password = "";
-	$table = "distri_baguette";
+//introduction du fichier config.php
+include 'config.php';
+
+	require 'hyla_tpl.class.php';
 	
-	$id=mysqli_connect($hostname,$username,$password,$table) or die("Erreur de connexion");
-	
-	$boulanger = $_GET['boulanger'];
-	$distributeur = $_GET['distributeur'];
+	$tpl = new Hyla_Tpl('tpl');
+	$tpl->importFile('index.html');
+
+//connection à la base de données 
+	$id=mysqli_connect($host,$user,$password,$table) or "Erreur de connexion";
 	
 	$sql= "SELECT * FROM 'boulanger'";
 	
