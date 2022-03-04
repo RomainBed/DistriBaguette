@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+  <html style= "min-height: 100%;background-repeat: no-repeat; background-image: linear-gradient(to right top, #f5dfb0 0%, #858d92 100%); width: auto; height: auto;">
+    <head>
+        <title>DistriBaguette</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div style="width:100%; height: auto; margin:0px;">
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+            <img src="../image/Logo.PNG" style="width:100%; display: block;">
+            <h4 class="center" style="font-weight: bold;">NOS DISTRIBUTEURS</h4>
+			
+			<!-- BEGIN distrib -->
+            <div class="container">
+                <div class="collection">
+                    <a href="#terms" class="collection-item center"><span class="black-text text-darken-2">Distributeur 2</span></a>
+                    <div class="modal" id="terms">
+                        <div class="modal-content">
+                            <h4>Description</h4>
+                            <p>Affichage des données</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!-- END distrib -->
+		   
+            <footer class="page-footer" style="bottom:0;width:100%;position :absolute;background-color : #241404">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="yellow-text">DistriBaguette</h5>     
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h6 class="yellow-text">Projet 2022</h6>
+                            <ul>
+                                <li><p class="grey-text text-lighten-9">Romain</p></li>
+                                <li><p class="grey-text text-lighten-9">Florian</p></li>
+                                <li><p class="grey-text text-lighten-9">Anthony</p></li>                    
+                                <li><p class="grey-text text-lighten-9">Younes</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <script>
+                $(document).ready(function(){
+                    $('.modal').modal();
+                });
+            </script>
+        </div>
+    </body>
+  </html>
