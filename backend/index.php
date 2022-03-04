@@ -1,7 +1,16 @@
 <?php	
-	$id=mysqli_connect("localhost","root","root","personnes") or die("Erreur de connexion");
-	$req=mysqli_query($id,"select nom,prenom from personnes");
-while($tab=mysqli_fetch_assoc($req)){
-   echo $tab["nom"]." ".$tab["prenom"];
-}
+	$hostname = "172.20.233.53/bdd";
+	$username = "root";
+	$password = "";
+	$table = "distri_baguette";
+	
+	$id=mysqli_connect($hostname,$username,$password,$table) or die("Erreur de connexion");
+	
+	$boulanger = $_GET['boulanger'];
+	$distributeur = $_GET['distributeur'];
+	
+	$sql= "SELECT * FROM 'boulanger'";
+	
+	$test=mysqli_query($id,$sql);
+	echo($test);
 ?>
