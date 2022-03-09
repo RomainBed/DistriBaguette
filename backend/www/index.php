@@ -13,10 +13,11 @@ include 'config.php';
 	$tpl = new Hyla_Tpl('tpl');
 	$tpl->importFile('page_web.html');
 	
-	$tpl->render('distrib');
-	$tpl->render('distrib');
-	$tpl->render('distrib');
-	$tpl->render('distrib');
+	$i = 1;
+	while ($i <= 10) {
+		$tpl->render('distrib');
+		echo $i++;
+	}		
 	
 	echo $tpl->render();
 ?>
