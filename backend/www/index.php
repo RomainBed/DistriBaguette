@@ -1,31 +1,24 @@
 <?php	
 //introduction du fichier config.php
 include 'config.php';
+include 'connection.php';
 require './lib/hyla_tpl.class.php';
-//------------------------------------CONNECTION---------------------------------------
-//connection à la base de données 
-	
-	$id=mysqli_connect($host,$user,$password,$table) or "Erreur de connexion";
-		if($con->mysqli_connect_errno){
-			echo "Error connection";
-		};
-		
 
-	//$con=mysqli_query($id,$sql);
-//---------------------------------------------------------------------------
 
 //Intégration de la bibliothèque Hyla_Tpl
 
 	$tpl = new Hyla_Tpl('tpl');
 	$tpl->importFile('page_web.html');
+	
 //---------------------------------------------------------------------------
 //Distributeur
 //---------------------------------------------------------------------------
+
 	$Distributeur = 1;	
 	//Nombre de distributeur
 	while ($Distributeur <= 10) {
 
-		$users= $con->query("SELECT * FROM users");
+		$users= $con->query("SELECT * FROM utilisateur");
 		
 		//echo $user['name'];
 		//echo $lieu[''];
@@ -34,8 +27,13 @@ require './lib/hyla_tpl.class.php';
 		//rendu du bloc distrib
 		$tpl->render('distrib');
 	}		
+	// while($user=$users->mysql_fetch_assoc()){
+			// echo $user;
+			// $tpl->render('stock');
+		// }
 	
 	echo $tpl->render();
+	
 //---------------------------------------------------------------------------
 
 	/*
@@ -50,5 +48,5 @@ require './lib/hyla_tpl.class.php';
 	
 	/*Test selection
 	
-	$sql= $con->("SELECT * FROM 'boulanger'");*/
+	$sql= $con->("SELECT * FROM 'users'");*/
 ?>
