@@ -3,12 +3,15 @@
 include 'config.php';
 //------------------------------------CONNECTION---------------------------------------
 //connection à la base de données 
-	$con= mysqli_connect($host,$user,$password,$base,3306);
-		if ($con->connect_errno) {
-			
-			error_log('Connection erreur: ' . $con->connect_errno);
-		}
-	// $con=mysqli_query($con,$sql);
+	try{
+		 // $pdo = mysqli_connect($host,$user,$password,$base);
+		//$pdo = new PDO("mysql:$host,$user,$password,$base");
+		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;charset=utf8','client','client1');
+	}
+	catch(Exception	$e)
+	{
+		echo "erreur";
+	}
 // ---------------------------------------------------------------------------
 
 ?>
