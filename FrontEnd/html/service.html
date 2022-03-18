@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+        <title>{$page}</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/php" src="php/msgfr.php"></script>
+		<script type="text/php" src="php/index.php"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <div id="bandeau">
+            <img src="../image/Logo2.PNG" id="image">
+        </div>
+    </head>
+    <body>
+        <div ng-app="FireCart" ng-controller="AuthController">
+            <h4 class="center">{$admin}</h4>
+            <div class="row center">
+                <div class="col s12 m10 offset-m1 l6 offset-l3">
+                    <div class="card sticky-action z-depth-4 card-panel hoverable">
+                        <form >
+                        <div class="card-content">
+                            <div class="row center-align">
+                            <span class="card-title grey-text text-darken-4 center-align">{$connect}</span>
+                            <div class="input-field col s12">
+                                <input ng-model="user.email" id="email" type='email' name='email' class="validate left-align" required="true" placeholder="Identifiant" />
+                            </div>
+                            <div class="input-field col s12">
+                                <input ng-model="user.password" type='password' name='password' id='password' class="validate" required="true" placeholder="MDP" />
+                            </div>
+                            </div>
+                            <input type="submit" class="waves-effect waves-light btn" value='Login' id="submit"></input>
+                        </div>
+                        </form>
+                        <div class="card-reveal">
+                            <div class="row center-align">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix center">account_circle</i>
+                                    <input id="idsignup" type="text" class="validate left-align" required="required" placeholder="User Mail ID" />
+                                    <label for="idsignup" class="left-align">Username</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix center">dialpad</i>
+                                    <input id="passsignup" type="password" class="validate" required="required" placeholder="Password" />
+                                    <label for="passsignup" class=" left-align">Password</label>
+                                </div>
+                                <input type="button" class="waves-effect waves-light btn" value="Signup" id="signup" onclick="signUp()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="yellow-text">{$footertitle}</h5>     
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h6 class="yellow-text">{$projet}</h6>
+                        <ul>
+                            <li><p class="grey-text text-lighten-9">Romain / Florian / Anthony / Younes</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
