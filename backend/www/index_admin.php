@@ -8,37 +8,43 @@ require './php/msgfr.php';
 //Intégration de la bibliothèque Hyla_Tpl
 
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('accueil_admin.html');
-	
-	$tpl->setVar('admin', $admin);
-	$tpl->setVar('liste', $liste);
-	$tpl->setVar('par', $par);
-	$tpl->setVar('arch', $arch);
-	$tpl->setVar('name', $name);
-	$tpl->setVar('stack', $stack);
-	$tpl->setVar('marche', $marche);
-	$tpl->setVar('titledistri', $titledistri);
-	$tpl->setVar('titleboul', $titleboul);
-	$tpl->setVar('titleboul', $name);
-	$tpl->setVar('nameB', $nameB);
-	$tpl->setVar('mailB', $mailB);
-	$tpl->setVar('telB', $telB);
-	
-	$tpl->setVar('page', $page);
-	$tpl->setVar('title', $title);
-	$tpl->setVar('footertitle', $footertitle);
-	$tpl->setVar('projet', $projet);
-	
-	$tpl->setVar('stock', $stock);
-	$tpl->setVar('etat', $etat);
-	$tpl->setVar('loc', $loc);
-	$tpl->setVar('boulanger', $boulanger);
+	$tpl->importFile('index_admin.html');
 
-// Distributeur 
+// Lien des variables HTML -> PHP
+
+	$tpl->setVar('AA_admin', $AA_admin);
+	$tpl->setVar('AA_liste', $AA_liste);
+	$tpl->setVar('AA_par', $AA_par);
+	$tpl->setVar('AA_arch', $AA_arch);
+	$tpl->setVar('DA_name', $DA_name);
+	$tpl->setVar('DA_stack', $DA_stack);
+	$tpl->setVar('DA_marche', $DA_marche);
+	$tpl->setVar('AA_titledistri', $AA_titledistri);
+	$tpl->setVar('AA_titleboul', $AA_titleboul);
+	$tpl->setVar('AA_titleboul', $DA_name);
+	$tpl->setVar('BA_name_B', $BA_name_B);
+	$tpl->setVar('BA_mail_B', $BA_mail_B);
+	$tpl->setVar('BA_tel_B', $BA_tel_B);
+	
+	$tpl->setVar('A_page', $A_page);
+	$tpl->setVar('A_title', $A_title);
+	$tpl->setVar('A_footertitle', $A_footertitle);
+	$tpl->setVar('A_projet', $A_projet);
+	
+	$tpl->setVar('D_stock', $D_stock);
+	$tpl->setVar('D_etat', $D_etat);
+	$tpl->setVar('DA_loc_1', $DA_loc);
+	$tpl->setVar('D_boulanger', $D_boulanger);
+	
+	$tpl->setVar('flootertitle',$A_footertitle);
+	$tpl->setVar('A_projet',$A_projet);
+	
+
+
 //---------------------------------------------------------------------------
 //Connexion
 	try{		
-		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','client','client1');
+		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','admin','root');
 	}
 	catch(Exception	$e)
 	{
@@ -53,22 +59,22 @@ require './php/msgfr.php';
 	$result = $pdo->prepare($request);
 	$result->execute();
 	$results = $result->fetchAll();
-		
+		// Boucle tant qu'il y a des données il continue à incrementer
 	foreach($results as $donnee){
 
-		$tpl->setVar('titleboul', $titleboul);
+		$tpl->setVar('AA_titleboul', $AA_titleboul);
 		
-		$tpl->setVar('nom_distri', $donnee['place']);
-		$tpl->setVar('loc1', $donnee['localisation']);
-		$tpl->setVar('stack1', $donnee['stock']);
-		$tpl->setVar('marche1', $donnee['etat']);
-		$tpl->setVar('name1', $donnee['place']);
+		$tpl->setVar('A_nom_distri', $donnee['place']);
+		$tpl->setVar('DA_loc_1', $donnee['localisation']);
+		$tpl->setVar('DA_stack_1', $donnee['stock']);
+		$tpl->setVar('DA_marche_1', $donnee['etat']);
+		$tpl->setVar('DA_name_1', $donnee['place']);
 		
 		$tpl->render('distrib', $donnee);
 		
-		$tpl->setVar('nameB1', $donnee['nom']);
-		$tpl->setVar('telB1', $donnee['telephone']);
-		$tpl->setVar('mailB1', $donnee['adresse_mail']);
+		$tpl->setVar('BA_name_B_1', $donnee['nom']);
+		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
+		$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
 		
 
 		$tpl->render('boulanger', $donnee);

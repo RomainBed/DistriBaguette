@@ -1,132 +1,68 @@
 <?php	
 //introduction du fichier config.php
-include 'config.php';
-require './lib/hyla_tpl.class.php';
-require './php/msgfr.php';
+	include 'config.php';
+	require './lib/hyla_tpl.class.php';
+	require './php/msgfr.php';
 
 
 //Intégration de la bibliothèque Hyla_Tpl
 
-	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('index.html');
-	
-	// $tpl->setVar('distrii',$distrii);
-	
-	$tpl->setVar('page', $page);
-	$tpl->setVar('title', $title);
-	$tpl->setVar('footertitle', $footertitle);
-	$tpl->setVar('projet', $projet);
-	
-	$tpl->setVar('stock', $stock);
-	$tpl->setVar('etat', $etat);
-	$tpl->setVar('loca', $loca);
-	$tpl->setVar('boulanger', $boulanger);
+		$tpl = new Hyla_Tpl('html');
+		$tpl->importFile('index.html');
 
-// Distributeur 
+// Lien des variables HTML -> PHP
+
+		$tpl->setVar('A_page', $A_page);
+		$tpl->setVar('A_title', $A_title);
+		$tpl->setVar('A_footertitle', $A_footertitle);
+		$tpl->setVar('A_projet', $A_projet);
+		
+		$tpl->setVar('D_stock', $D_stock);
+		$tpl->setVar('D_etat', $D_etat);
+		$tpl->setVar('D_loca', $D_loca);
+		$tpl->setVar('D_boulanger', $D_boulanger);
+
+//---------------------------------------------------------------------------
+// Partie distributeur 
 //---------------------------------------------------------------------------
 //Connexion
-	try{
-		// $pdo = mysqli_connect($host,$user,$password,$base);
-		// $pdo = new PDO("mysql:$host,$user,$password,$base");
-		// $pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;charset=utf8','client','client1');
-		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','client','client1');
-	}
-	catch(Exception	$e)
-	{
-		echo "erreur";
-	}
+		try{
+			$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','admin','root');
+		}
+		catch(Exception	$e)
+		{
+			echo "erreur";
+		}
 //---------------------------------------------------------------------------
 //BDD connexion Site
-
-	// $request = "SELECT * FROM distributeur WHERE ID_Distributeur='1'";
-	// $request = ("SELECT * FROM distributeur, boulanger");
-	
-	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
-
-	
-	$result = $pdo->prepare($request);
-	$result->execute();
-	$results = $result->fetchAll();
-	// $result = mysqli_query($pdo, $request);
 		
-	foreach($results as $donnee){
+		$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+
+		$result = $pdo->prepare($request);
+		$result->execute();
+		$results = $result->fetchAll();
+		$tpl->setVar('A_desc', $A_desc);
+
+	// Set du ID 
+		$id = 0;
 		
-		// $test = array(
-		// 'desc' => $desc,
-		// 'nom_distri' => $donnee['place'],
-		// 'loca1' => $donnee['localisation'],
-		// 'stock1' => $donnee['stock'],
-		// 'etat1' => $donnee['etat'],
-		// );
+	// Boucle tant qu'il y a des données il continue à incrementer
+
+		foreach($results as $donnee)
+		{			
+								
+				$tpl->setVar('id',$id);
+				$tpl->setVar('A_nom_distri', $donnee['place']);
+				$tpl->setVar('D_loca_1', $donnee['localisation']);
+				$tpl->setVar('D_stock_1', $donnee['stock']);
+				$tpl->setVar('D_etat_1', $donnee['etat']);
+				$tpl->setVar('D_boulanger_1', $donnee['nom']);
+				
+	// Rendu du distributeur avec les données
+				$tpl->render('distrib', $donnee);
+				$id++;
+		}
 		
-		
-		// $tpl->setVar('test', $test);
-		// $tpl->render('test');
-		
-		$tpl->setVar('desc', $desc);
-		$tpl->setVar('nom_distri', $donnee['place']);
-		$tpl->setVar('loca1', $donnee['localisation']);
-		$tpl->setVar('stock1', $donnee['stock']);
-		$tpl->setVar('etat1', $donnee['etat']);
-		$tpl->setVar('boulanger1', $donnee['nom']);
-			// Rendu
-		$tpl->render('distrib', $donnee);
+		echo $tpl->render();
 
-	}
-
-	echo $tpl->render();
-	
-//---------------------------------------------------------------------------
-
-	// $request = "SELECT * FROM users";
-	// $result = mysqli_query($pdo, $request);
-
-	// while ($row = $result->fetch_row()) 
-	// {
-		// $tpl->setVar('nom_distri', $row[1]);
-		// $tpl->render('distrib');
-	// }	
-	
-	// echo $tpl->render();
-		
-//---------------------------------------------------------------------------
-/*
-	if ( ($stmt = $pdo->query($request)) == false )
-		echo "Erreur select <br/";
-
-	while ( $row = $stmt->fetch() )
-	{
-		$tpl->setVar('nom_distri', $row['nom']);
-		$tpl->render('distrib');
-	}
-
-/*
-	$stat = $statement->fetchAll();
-
-	echo (count($stat));
-	
-	$Distributeur = 1;	
-	
-	//Nombre de distributeur
-	while ($Distributeur = $stat) {	//nombre distri depuis BDD
-		$Distributeur++;
-		//rendu du bloc distrib
-		$tpl->render('distrib');
-	}		
-*/	
-
-	/*
-	//Ajouter valeur dans la table depuis html
-	
-	$post= $con->query("INSERT INTO users VALUES(DEFAULT,'$name','$lieu')");
-	if($post) {
-		header("location:page_web.html");
-	} else {
-		echo "Erreur create";
-	}
-	*/
-	
-	/*Test selection
-	
-	$sql= $con->("SELECT * FROM 'users'");*/
 ?>
