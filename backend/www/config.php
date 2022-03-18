@@ -1,9 +1,15 @@
 <?php
-$host = "172.20.233.109/phpmyadmin";
-$user = "root";
-$password = "root";
-$base = "distribaguette"; 
+// BDD Local
 
-//$name= $_POST['name'];
-//$lieu= $_POST['lieu'];
+// $host = "127.0.0.1";
+// $user = "";
+// $password = "";
+// $base = "test"; 
+
+// BDD Distribaguette
+
+$host = "172.20.233.109";
+$user = "'client'";
+$password = "'client1'";
+$base = "distribaguette"; 
 ?>

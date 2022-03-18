@@ -12,33 +12,71 @@ require './php/msgfr.php';
 	
 	$tpl->setVar('page', $page);
 	$tpl->setVar('title', $title);
+	$tpl->setVar('footertitle', $footertitle);
+	$tpl->setVar('projet', $projet);
 	
+	$tpl->setVar('stock', $stock);
+	$tpl->setVar('etat', $etat);
+	$tpl->setVar('loca', $loca);
+	$tpl->setVar('boulanger', $boulanger);
 
-//Distributeur
-
-
+// Distributeur 
 //---------------------------------------------------------------------------
 //Connexion
 	try{
-		$pdo = mysqli_connect($host,$user,$password,$base);
-
-		//$pdo = new PDO("mysql:$host,$user,$password,$base");
-		//$pdo = new PDO("mysql:host=localhost;dba=test");
+		// $pdo = mysqli_connect($host,$user,$password,$base);
+		// $pdo = new PDO("mysql:$host,$user,$password,$base");
+		// $pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;charset=utf8','client','client1');
+		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','client','client1');
 	}
 	catch(Exception	$e)
 	{
-		console.log('erreur');
+		echo "erreur";
 	}
 //---------------------------------------------------------------------------
-//BDD -> Site
-	$request = "SELECT * FROM users";
-	$result = mysqli_query($pdo, $request);
+//BDD connexion Site
 
-	while ($row = $result->fetch_row()) 
-	{
-		$tpl->setVar('nom_distri', $row[1]);
+	// $request = "SELECT * FROM distributeur WHERE ID_Distributeur='1'";
+
+	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+	// $request = ("SELECT * FROM distributeur, boulanger");
+	// $request2 = ("SELECT * FROM boulanger");
+	
+	$result = $pdo->prepare($request);
+	$result->execute();
+	$results = $result->fetchAll();
+	// $result = mysqli_query($pdo, $request);
+		
+	foreach($results as $donnee){
+		$tpl->setVar('desc', $desc);
+		$tpl->setVar('nom_distri', $donnee['place']);
+		$tpl->setVar('loca1', $donnee['localisation']);
+		$tpl->setVar('stock1', $donnee['stock']);
+		$tpl->setVar('etat1', $donnee['etat']);
+			
+		$tpl->setVar('boulanger1', $donnee['nom']);
+			
 		$tpl->render('distrib');
-	}		
+	}
+	
+	
+	// }
+	echo $tpl->render();
+	
+//---------------------------------------------------------------------------
+
+	// $request = "SELECT * FROM users";
+	// $result = mysqli_query($pdo, $request);
+
+	// while ($row = $result->fetch_row()) 
+	// {
+		// $tpl->setVar('nom_distri', $row[1]);
+		// $tpl->render('distrib');
+	// }	
+	
+	// echo $tpl->render();
+		
+//---------------------------------------------------------------------------
 /*
 	if ( ($stmt = $pdo->query($request)) == false )
 		echo "Erreur select <br/";
@@ -63,22 +101,10 @@ require './php/msgfr.php';
 		$tpl->render('distrib');
 	}		
 */	
-	echo $tpl->render();
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-//---------------------------------------------------------------------------
 
 	/*
 	//Ajouter valeur dans la table depuis html
+	
 	$post= $con->query("INSERT INTO users VALUES(DEFAULT,'$name','$lieu')");
 	if($post) {
 		header("location:page_web.html");
