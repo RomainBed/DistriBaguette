@@ -31,7 +31,7 @@ require './php/msgfr.php';
 	
 	$tpl->setVar('stock', $stock);
 	$tpl->setVar('etat', $etat);
-	$tpl->setVar('loca', $loca);
+	$tpl->setVar('loc', $loc);
 	$tpl->setVar('boulanger', $boulanger);
 
 // Distributeur 
@@ -47,7 +47,7 @@ require './php/msgfr.php';
 //---------------------------------------------------------------------------
 //BDD connexion Site
 	
-	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
 
 	
 	$result = $pdo->prepare($request);
@@ -57,15 +57,20 @@ require './php/msgfr.php';
 	foreach($results as $donnee){
 
 		$tpl->setVar('titleboul', $titleboul);
+		
 		$tpl->setVar('nom_distri', $donnee['place']);
 		$tpl->setVar('loc1', $donnee['localisation']);
 		$tpl->setVar('stack1', $donnee['stock']);
 		$tpl->setVar('marche1', $donnee['etat']);
 		$tpl->setVar('name1', $donnee['place']);
-		$tpl->setVar('nameB1', $donnee['nom']);
-		$tpl->setVar('mailB1', $donnee['adresse_mail']);
-			// Rendu
+		
 		$tpl->render('distrib', $donnee);
+		
+		$tpl->setVar('nameB1', $donnee['nom']);
+		$tpl->setVar('telB1', $donnee['telephone']);
+		$tpl->setVar('mailB1', $donnee['adresse_mail']);
+		
+
 		$tpl->render('boulanger', $donnee);
 	}
 
