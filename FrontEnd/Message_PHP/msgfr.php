@@ -20,7 +20,18 @@ $etat = "ETAT";
 $loca = "LOCALISATION";
 $boulanger = "BOULANGER";
 
-//service
+//Accueil Admin
 $admin = "ADMINISTRATION";
-$connect = "Connexion";
+$par = "Parametrage";
+$liste = "Liste";
+$arch = "Archive";
+$name = "Nom";
+$stack = "Stock";
+$local = "Localisation";
+$marche = "Etat";
+$titledistri = "Distributeurs";
+$titleboul = "Boulangers";
+$nameB = "Nom / Prénom";
+$mailB = "Adresse mail";
+$telB = "Téléphone";
 ?>
