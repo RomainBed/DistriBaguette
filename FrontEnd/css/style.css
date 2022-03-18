@@ -1,0 +1,54 @@
+html{
+    min-height: 100%;
+    background-repeat: no-repeat; 
+    background-image: linear-gradient(to right top, #f5dfb0 0%, #858d92 100%); 
+    width: auto; 
+    height: auto;
+}
+
+#image{
+    text-align: center; 
+    margin: auto; 
+    display: flex;
+}
+
+#liste {
+    height: auto; 
+    margin:0px;
+}
+
+#bandeau{
+    height: 76px; 
+    background: #231600;
+}
+
+h4{
+    position : block;
+    font-weight: bold;
+}
+
+#footer{
+    bottom: 0; 
+    width: 100%; 
+    position: absolute; 
+    background-color: #241404;
+}
+
+#s1{
+    float: left; 
+    width: 45%; 
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#sh4{
+    text-align: center; 
+    font-weight: bold;
+}
+
+#s2{
+    width: 45%; 
+    float: right; 
+    margin-top: 20px; 
+    margin-right: 10px;
+}
