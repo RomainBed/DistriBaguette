@@ -10,6 +10,8 @@ require './php/msgfr.php';
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index.html');
 	
+	// $tpl->setVar('distrii',$distrii);
+	
 	$tpl->setVar('page', $page);
 	$tpl->setVar('title', $title);
 	$tpl->setVar('footertitle', $footertitle);
@@ -37,10 +39,10 @@ require './php/msgfr.php';
 //BDD connexion Site
 
 	// $request = "SELECT * FROM distributeur WHERE ID_Distributeur='1'";
-
-	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
 	// $request = ("SELECT * FROM distributeur, boulanger");
-	// $request2 = ("SELECT * FROM boulanger");
+	
+	$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+
 	
 	$result = $pdo->prepare($request);
 	$result->execute();
@@ -48,19 +50,30 @@ require './php/msgfr.php';
 	// $result = mysqli_query($pdo, $request);
 		
 	foreach($results as $donnee){
+		
+		// $test = array(
+		// 'desc' => $desc,
+		// 'nom_distri' => $donnee['place'],
+		// 'loca1' => $donnee['localisation'],
+		// 'stock1' => $donnee['stock'],
+		// 'etat1' => $donnee['etat'],
+		// );
+		
+		
+		// $tpl->setVar('test', $test);
+		// $tpl->render('test');
+		
 		$tpl->setVar('desc', $desc);
 		$tpl->setVar('nom_distri', $donnee['place']);
 		$tpl->setVar('loca1', $donnee['localisation']);
 		$tpl->setVar('stock1', $donnee['stock']);
 		$tpl->setVar('etat1', $donnee['etat']);
-			
 		$tpl->setVar('boulanger1', $donnee['nom']);
-			
-		$tpl->render('distrib');
+			// Rendu
+		$tpl->render('distrib', $donnee);
+
 	}
-	
-	
-	// }
+
 	echo $tpl->render();
 	
 //---------------------------------------------------------------------------

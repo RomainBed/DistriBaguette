@@ -12,4 +12,17 @@ $host = "172.20.233.109";
 $user = "'client'";
 $password = "'client1'";
 $base = "distribaguette"; 
+
+//Commentaire
+
+// $distrii = array(
+	// 'page' => $page,
+	// 'title' => $title,
+	// 'footertitle' => $footertitle,
+	// 'projet' => $projet,
+	// 'stock' => $stock,
+	// 'etat' => $etat,
+	// 'loca' => $loca,
+	// 'boulanger' => $boulanger
+	// );
 ?>
