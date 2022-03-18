@@ -31,24 +31,33 @@ h4{
     bottom: 0; 
     width: 100%; 
     position: absolute; 
+    padding: 0;
     background-color: #241404;
-}
-
-#s1{
-    float: left; 
-    width: 45%; 
-    margin-top: 20px;
-    margin-left: 10px;
 }
 
 #sh4{
     text-align: center; 
     font-weight: bold;
+    margin-bottom: 30px;
 }
 
-#s2{
-    width: 45%; 
-    float: right; 
-    margin-top: 20px; 
-    margin-right: 10px;
+#s2h4{
+    text-align: center; 
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
+
+#sresp{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+#adm{
+
+}
+
+
+
