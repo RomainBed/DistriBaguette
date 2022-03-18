@@ -1,33 +1,46 @@
 <!DOCTYPE html>
-  <html style= "min-height: 100%;background-repeat: no-repeat; background-image: linear-gradient(to right top, #f5dfb0 0%, #858d92 100%); width: auto; height: auto;">
+  <html>
     <head>
-        <title>$page</title>
+        <title>{$page}</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script type="text/javascript" src="../js/config.js"></script>
+        <script type="text/php" src="php/msgfr.php"></script>
+		<script type="text/php" src="php/index.php"></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <div id="bandeau">
+            <img src="../image/Logo2.PNG" id="image">
+        </div>
     </head>
     <body>
-        <div id="boucle" style=" height: auto; margin:0px;">
+        <div id="boucle">
             <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-            <img src="../image/Logo.PNG" style="width:100%; display: block;">
-            <h4 class="center" style="font-weight: bold;">$title</h4>
+            <h4 class="center">{$title}</h4>
+            <!-- BEGIN distrib -->
             <div class="container">
                 <div class="collection">
-                    <a href="#terms" class="collection-item center"><span class="black-text text-darken-2">$nom_distri</span></a>
+                    <a href="#terms" class="collection-item center">
+                        <span class="black-text text-darken-2">{$nom_distri}</span>
+                    </a>
                     <div class="modal" id="terms">
                         <div class="modal-content">
-                            <h4 class="yellow-text">$desc</h4>      
+                            <h4 class="yellow-text">{$desc}</h4>      
                             <div class="row">
                                 <div class="col s12">
                                     <table class="centered highlight">
                                         <thread>
                                             <tr>
-                                                <th>$stock</th>
-                                                <th>$etat</th>
-                                                <th>$loca</th>
-                                                <th>$boulanger</th>
+                                                <th>{$boulanger}</th>
+                                                <th>{$loca}</th>
+                                                <th>{$stock}</th>
+                                                <th>{$etat}</th>
+                                            </tr>
+                                            <tr>
+                                                <th>{$boulanger1}</th>
+                                                <th>{$loca1}</th>
+                                                <th>{$stock1}</th>
+                                                <th>{$etat1}</th>
                                             </tr>
                                         </thread>
                                     </table>
@@ -37,19 +50,17 @@
                     </div>
                 </div>
             </div>
-            <footer class="page-footer" style="bottom: 0; width: 100%; position: absolute; background-color: #241404">
+            <!-- END distrib -->
+            <footer class="page-footer" id="footer">
                 <div class="container">
                     <div class="row">
                         <div class="col l6 s12">
-                            <h5 class="yellow-text">$footertitle</h5>     
+                            <h5 class="yellow-text">{$footertitle}</h5>     
                         </div>
                         <div class="col l4 offset-l2 s12">
-                            <h6 class="yellow-text">$projet</h6>
+                            <h6 class="yellow-text">{$projet}</h6>
                             <ul>
-                                <li><p class="grey-text text-lighten-9">$nom1</p></li>
-                                <li><p class="grey-text text-lighten-9">$nom2</p></li>
-                                <li><p class="grey-text text-lighten-9">$nom3</p></li>                    
-                                <li><p class="grey-text text-lighten-9">$nom4</p></li>
+                                <li><p class="grey-text text-lighten-9">Romain / Florian / Anthony / Younes</p></li>
                             </ul>
                         </div>
                     </div>
@@ -62,4 +73,4 @@
             </script>
         </div>
     </body>
-  </html>
+    </html>
