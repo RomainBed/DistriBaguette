@@ -1,15 +1,48 @@
 <?php
-session_start();
-if(isset($_POST['username']) && isset($_POST['password']))
-{
-    // connexion à la base de données
+//Intégration de la bibliothèque Hyla_Tpl
 
-    $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
-           or die('could not connect to database');
-    
-    // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
-    // pour éliminer toute attaque de type injection SQL et XSS
-    $username = mysqli_real_escape_string($db,htmlspecialchars($_POST['username'])); 
-    $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['password']));
-}
+	require './lib/hyla_tpl.class.php';
+	require './php/msgfr.php';
+	require('config.php');
+
+	$tpl = new Hyla_Tpl('html');
+	$tpl->importFile('service.html');
+	
+	$tpl->setVar('A_page', $A_page);
+	$tpl->setVar('flootertitle',$A_footertitle);
+	$tpl->setVar('A_projet',$A_projet);
+	$tpl->setVar('S_admin',$S_admin);
+	$tpl->setVar('S_connect',$S_connect);
+	
+require('config.php');
+session_start();
+$tpl->render('connexion');
+
+	if (isset($_POST['username'])){
+	  $username = stripslashes($_REQUEST['username']);
+	  $username = PDO::quote($pdo, $username);
+	  
+	  $password = stripslashes($_REQUEST['password']);
+	  $password = PDO::quote($pdo, $password);
+	  
+	  $query = "SELECT * FROM `users` WHERE username='$username' and password='$password.'";
+		
+	  $result =PDO::query($pdo,$query) or die(PDO::errorInfo());
+	  $rows = fetchAll($result);
+	  
+	  if($rows==1){
+		  
+		  $_SESSION['username'] = $username;
+		  header("Location: index_admin.php");
+		  
+	  }else{
+		  
+		$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+	  }
+	}
+	  // if (isset($_POST['username'])){
+      // $_POST['username'] = $username;
+      // header("Location: index_admin.php");
+// }
+	echo $tpl->render();
 ?>
