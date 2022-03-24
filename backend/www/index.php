@@ -1,14 +1,12 @@
 <?php	
-//introduction du fichier config.php
-	include 'config.php';
-	require './lib/hyla_tpl.class.php';
-	require './php/msgfr.php';
-
-
 //Intégration de la bibliothèque Hyla_Tpl
 
-		$tpl = new Hyla_Tpl('html');
-		$tpl->importFile('index.html');
+	require './lib/hyla_tpl.class.php';
+	require './php/msgfr.php';
+	require('config.php');
+
+	$tpl = new Hyla_Tpl('html');
+	$tpl->importFile('index.html');
 
 // Lien des variables HTML -> PHP
 
@@ -22,18 +20,6 @@
 		$tpl->setVar('D_loca', $D_loca);
 		$tpl->setVar('D_boulanger', $D_boulanger);
 
-//---------------------------------------------------------------------------
-// Partie distributeur 
-//---------------------------------------------------------------------------
-//Connexion
-		try{
-			$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','admin','root');
-		}
-		catch(Exception	$e)
-		{
-			echo "erreur";
-		}
-//---------------------------------------------------------------------------
 //BDD connexion Site
 		
 		$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
