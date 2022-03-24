@@ -3,7 +3,7 @@
 
 	require './lib/hyla_tpl.class.php';
 	require './php/msgfr.php';
-	require('config.php');
+	require 'config.php';
 
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index.html');

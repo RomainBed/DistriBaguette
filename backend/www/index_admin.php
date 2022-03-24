@@ -3,7 +3,7 @@
 
 	require './lib/hyla_tpl.class.php';
 	require './php/msgfr.php';
-	require('config.php');
+	require 'config.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
@@ -34,7 +34,6 @@
 	$tpl->setVar('DA_loc_1', $DA_loc);
 	$tpl->setVar('D_boulanger', $D_boulanger);
 	
-	$tpl->setVar('flootertitle',$A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
 
