@@ -1,52 +1,41 @@
 <?php
-include 'config.php';
-require 'lib/hyla_tpl.class.php';
-require 'php/msgfr.php';
 //Intégration de la bibliothèque Hyla_Tpl
+
+	require './lib/hyla_tpl.class.php';
+	require './php/msgfr.php';
+	require('config.php');
 
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('service.html');
-				
-$tpl->setVar('connect', $connect);
-
+	
+	$tpl->setVar('A_page', $A_page);
+	$tpl->setVar('flootertitle',$A_footertitle);
+	$tpl->setVar('A_projet',$A_projet);
+	$tpl->setVar('S_admin',$S_admin);
+	$tpl->setVar('S_connect',$S_connect);
+	
+require('config.php');
 session_start();
-	if(isset($_POST['username']) && isset($_POST['password']))
-	{
-		// connexion à la base de données
-		try{
-			$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','admin','root');
-		}
-		catch(Exception	$e)
-		{
-			echo "erreur";
-		}
-		
-		// on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
-		// pour éliminer toute attaque de type injection SQL et XSS
-		$username = $pdo->quote($db,htmlspecialchars($_POST['username'])); 
-		$password = $pdo->quote($db,htmlspecialchars($_POST['password']));
-		
-		if($username !== "" && $password !== "")
-		{			
-			$count = $reponse['count(*)'];
-			if($count!=0) // nom d'utilisateur et mot de passe correctes
-			{
-			   $_SESSION['username'] = $username;
-			   header('Location: principale.php');
-			}
-			else
-			{
-			   header('Location: login.php?erreur=1'); // utilisateur ou mot de passe incorrect
-			}
-		}
-		else
-		{
-		   header('Location: login.php?erreur=2'); // utilisateur ou mot de passe vide
-		}
+$tpl->render('connexion');
+
+	if (isset($_POST['username'])){
+	  $username = stripslashes($_REQUEST['username']);
+	  $username = mysqli_real_escape_string($pdo, $username);
+	  $password = stripslashes($_REQUEST['password']);
+	  $password = mysqli_real_escape_string($pdo, $password);
+		$query = "SELECT * FROM `users` WHERE username='$username' and password='$password.'";
+	  $result = mysqli_query($pdo,$query) or die(mysql_error());
+	  $rows = mysqli_num_rows($result);
+	  if($rows==1){
+		  $_SESSION['username'] = $username;
+		  header("Location: index_admin.php");
+	  }else{
+		$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+	  }
 	}
-else
-{
-   header('Location: login.php');
-}
-$db = null; // fermer la connexion
+	  // if (isset($_POST['username'])){
+      // $_POST['username'] = $username;
+      // header("Location: index_admin.php");
+// }
+	echo $tpl->render();
 ?>
