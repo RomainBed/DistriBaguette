@@ -16,8 +16,6 @@
 	
 session_start();
 
-
-
 	if (isset($_POST['username'])){
 		
 	  $username = stripslashes($_REQUEST['username']);
@@ -26,20 +24,23 @@ session_start();
 	  $password = stripslashes($_REQUEST['password']);
 	  $password = PDO::quote($pdo, $password);
 	  
-	  $query = "SELECT * FROM `users` WHERE username='$username' and password='$password.'";
+	  $request = "SELECT * FROM `users` WHERE username='admin' and password='root'";
 		
-	  $result =PDO::query($pdo,$query) or die(PDO::errorInfo());
-	  $rows = fetchAll($result);
+	  // $result =PDO::request($pdo,$request) or die(PDO::errorInfo());
+		$result = $pdo->prepare($request);
+		$result->execute();
+		$results = $result->fetchAll();
+	  // $rows = fetchAll($result);
 
-	  if($rows==1){
+	  // if($rows==1){
 		  
 		  $_SESSION['username'] = $username;
 		  header("Location: index_admin.php");
 		  
-	  }else{
+	  // }else{
 		  
-		$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
-	  }
+		// $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+	  // }
 	}
 	  
 	echo $tpl->render();
