@@ -20,8 +20,8 @@ $D_loca_1 = "LOCALISATION";
 $D_boulanger_1 = "BOULANGER";
 
 //Accueil Admin
-$AA_admin = "ADMINISTRATION";
-$AA_par = "Parametrage";
+$AA_admin = "ADMIN";
+$AA_par = "Editer";
 $AA_liste = "Liste";
 $AA_arch = "Archive";
 $AA_titledistri = "Distributeurs";
