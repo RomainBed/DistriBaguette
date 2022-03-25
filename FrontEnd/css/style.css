@@ -7,9 +7,13 @@ html{
 }
 
 #image{
-    text-align: center; 
     margin: auto; 
     display: flex;
+}
+
+#logo_bag{
+    display: flex;
+    margin: auto;
 }
 
 #liste {
@@ -31,8 +35,8 @@ h4{
     bottom: 0; 
     width: 100%; 
     position: absolute; 
-    padding: 0;
     background-color: #241404;
+    flex: flex;
 }
 
 #sh4{
@@ -44,20 +48,28 @@ h4{
 #s2h4{
     text-align: center; 
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 30px;
-}
-
-#sresp{
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: auto;
+    display: block;
 }
 
 #adm{
-
+    text-align: right;
+    margin-top: 0px;
 }
 
+#s2{
+    font-size: small;
+}
 
+#footer1{
+    bottom: -1; 
+    width: 100%; 
+    position: absolute; 
+    background-color: #241404;
+    flex: flex;
+}
 
+body{
+    font-family: 'Lora', serif;
+}
