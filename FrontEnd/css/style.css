@@ -11,6 +11,12 @@ html{
     display: flex;
 }
 
+@media (max-width: 350px){
+    #image {
+        width: 100%;
+    }
+}
+
 #logo_bag{
     display: flex;
     margin: auto;
