@@ -5,12 +5,12 @@ insert into `distri` (`Nom`) values
 ('jean'),
 ('richard');
 
-delete from `distri` where `id` = 1;
-
-alter table `distri` add `age` int(2) unsigned not null;
+update `distri` set `Nom` = 'jacques' where `Nom` ='jean';
 
 select * from `distri`;
 
-drop tables `distri`;
+delete from `distri` where `id` = 1;
+
+drop table `distri`;
 
 quit
