@@ -31,7 +31,7 @@
 	
 	$tpl->setVar('D_stock', $D_stock);
 	$tpl->setVar('D_etat', $D_etat);
-	$tpl->setVar('DA_loc_1', $DA_loc);
+	$tpl->setVar('DA_loc', $DA_loc);
 	$tpl->setVar('D_boulanger', $D_boulanger);
 	
 	$tpl->setVar('A_projet',$A_projet);
@@ -51,6 +51,7 @@
 		$tpl->setVar('AA_titleboul', $AA_titleboul);
 		
 		$tpl->setVar('A_nom_distri', $donnee['place']);
+		
 		$tpl->setVar('DA_loc_1', $donnee['localisation']);
 		$tpl->setVar('DA_stack_1', $donnee['stock']);
 		$tpl->setVar('DA_marche_1', $donnee['etat']);
@@ -58,8 +59,8 @@
 		
 		$tpl->render('distrib', $donnee);
 		
-		$tpl->setVar('BA_name_B_1', $donnee['nom']);
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
+		$tpl->setVar('BA_name_B_1', $donnee['nom']);
 		$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
 		
 
