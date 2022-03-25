@@ -4,19 +4,23 @@ sudo apt update
 sudo apt upgrade
 sudo apt update
 echo "Installation Apache2"
-sudo apt install apache2
+sudo apt install apache2 goto error
 sudo chown -R pi:www-data /var/www/html/
 sudo chmod -R 770 /var/www/html/
 wget -O verif_apache.html http://127.0.0.1
 echo "Installation PHP"
-sudo apt install php php-mbstring
+sudo apt install php php-mbstring goto error
 sudo rm /var/www/html/index.html
-echo "<?php phpinfo(); ?>" > /var/www/html/index.php
+echo "<?php phpinfo(); ?>" > /var/www/html/index.php 
 echo "Installation base de donnée mysql"
-sudo apt install mariadb-server php-mysql
+sudo apt install mariadb-server php-mysql goto error
 sudo mysql --user=root
 echo "Installation phpmyadmin"
-sudo apt install phpmyadmin
+sudo apt install phpmyadmin goto error
 sudo phpenmod mysqli
 sudo /etc/init.d/apache2 restart
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+
+:error
+
+echo " l'installation a échouée"
