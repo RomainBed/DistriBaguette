@@ -1,10 +1,12 @@
 <?php
+session_start();
+
 //Intégration de la bibliothèque Hyla_Tpl
 
 	require './lib/hyla_tpl.class.php';
 	require './php/msgfr.php';
-	require 'config.php';
-
+	require './config.php';
+	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('service.html');
 	
@@ -14,34 +16,24 @@
 	$tpl->setVar('S_admin',$S_admin);
 	$tpl->setVar('S_connect',$S_connect);
 	
-session_start();
-
-	if (isset($_POST['username'])){
+	if ( @$_POST['submit'] == "Login" ){
 		
-	  $username = stripslashes($_REQUEST['username']);
-	  $username = PDO::quote($pdo, $username);
+	  $username = stripslashes($_POST['username']);	  
+	  $password = stripslashes($_POST['password']);
 	  
-	  $password = stripslashes($_REQUEST['password']);
-	  $password = PDO::quote($pdo, $password);
-	  
-	  $request = "SELECT * FROM `users` WHERE username='admin' and password='root'";
-		
-	  // $result =PDO::request($pdo,$request) or die(PDO::errorInfo());
-		$result = $pdo->prepare($request);
-		$result->execute();
-		$results = $result->fetchAll();
-	  // $rows = fetchAll($result);
+	  try {
+		  $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $username, $password);
 
-	  // if($rows==1){
-		  
-		  $_SESSION['username'] = $username;
-		  header("Location: index_admin.php");
-		  
-	  // }else{
-		  
-		// $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
-	  // }
+		  if ( $pdo ) {
+			   $_SESSION['username'] = $username;
+			   $_SESSION['password'] = $password;
+
+			  header("Location: index_admin.php");
+			}
+		}
+	  catch(PDOexception $e) {
+		echo $e->getMessage();
+		}
 	}
-	  
 	echo $tpl->render();
 ?>

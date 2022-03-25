@@ -7,6 +7,19 @@
 
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index.html');
+	
+//---------------------------------------------------------------------------
+//Connexion
+
+	try{		
+		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','admin','root');
+	}
+	catch(Exception	$e)
+	{
+		echo "erreur";
+	}
+
+//---------------------------------------------------------------------------
 
 // Lien des variables HTML -> PHP
 

@@ -1,4 +1,5 @@
 <?php	
+session_start();
 //Intégration de la bibliothèque Hyla_Tpl
 
 	require './lib/hyla_tpl.class.php';
@@ -27,7 +28,7 @@
 //BDD connexion Site
 		
 		$request=("SELECT place FROM distributeur");
-
+		$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 		$result = $pdo->prepare($request);
 		$result->execute();
 		$results = $result->fetchAll();

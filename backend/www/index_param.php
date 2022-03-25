@@ -1,4 +1,5 @@
 <?php	
+session_start();
 //Intégration de la bibliothèque Hyla_Tpl
 
 	require './lib/hyla_tpl.class.php';
@@ -28,19 +29,43 @@
 	$tpl->setVar('S_Boulanger',$S_Boulanger);
 	$tpl->setVar('S_Distributeur',$S_Distributeur);
 	
-	$username = $_POST['prenom'];
-	$name = $_POST['nom'];
-	$email = $_POST['mail'];
-	$numero = $_POST['tel'];
+	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 	
-$post= $pdo->query("INSERT INTO boulanger VALUES(DEFAULT,'$name', '$username', '$email', '$numero)");
+	if ( @$_POST['submit'] == "Envoyer" ){
 		
-	if($post) {
-			header("location:index_param.php");
-		} else {
-			echo "Erreur create";
+	$user = stripslashes($_POST['prenom']);
+	$name = stripslashes($_POST['nom']);
+	$email = stripslashes($_POST['mail']);
+	$numero = stripslashes($_POST['tel']);
+	  
+	  try {
+		  $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
+			
+		  if ( $post ) {		
+				$post = $pdo->query("INSERT INTO boulanger VALUES(DEFAULT, $name, $user, $email, $numero)");
+			  header("Location: index_admin.php");
+			}
 		}
+		
+	  catch(PDOexception $e) {
+		  
+		echo $e->getMessage();
+		
+		}
+	}
+			
+	  // $nom1 = stripslashes($_POST['nom1']);	  
+	  // $stock = stripslashes($_POST['stock']);
+	  // $etat = stripslashes($_POST['etat']);
+	  // $localisation = stripslashes($_POST['localisation']);
+	  
 
-		echo $tpl->render();
+	echo $tpl->render();
+		
+		
+		
+		
+		
+
 
 ?>
