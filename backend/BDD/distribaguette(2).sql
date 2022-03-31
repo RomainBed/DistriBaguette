@@ -28,19 +28,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `boulanger` (
   `id_boulanger` int UNSIGNED DEFAULT NULL AUTO_INCREMENT,
-  `nom` varchar(30) NOT NULL,
-  `prenom` varchar(30) NOT NULL,
-  `adresse_mail` varchar(40) NOT NULL,
+  `nom` varchar(30) NOT NULL CHECK (`nom` != ``),
+  `prenom` varchar(30) NOT NULL CHECK (`prenom` != ``),
+  `adresse_mail` varchar(40) NOT NULL  CHECK (`adresse_mail` != ``),
   `telephone` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id_boulanger`),
   UNIQUE KEY `nom` (`nom`),
   UNIQUE KEY `prenom` (`prenom`),
   UNIQUE KEY `adresse_mail` (`adresse_mail`),
-  UNIQUE KEY `telephone` (`telephone`),
-  CHECK (`nom` != ``),
-  CHECK (`prenom` != ``),
-  CHECK (`adresse_mail` != ``)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `telephone` (`telephone`))
+ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contenu de la table `boulanger`
@@ -63,15 +60,14 @@ INSERT INTO `boulanger` (`nom`, `prenom`, `adresse_mail`, `telephone`) VALUES
 
 CREATE TABLE `distributeur` (
   `id_distributeur` int UNSIGNED DEFAULT NULL AUTO_INCREMENT,
-  `nom` varchar(30) NOT NULL,
-  `localisation` varchar(30) NOT NULL,
+  `nom` varchar(30) NOT NULL CHECK (`nom` != ``),
+  `localisation` varchar(30) NOT NULL CHECK ( `localisation` != ``),
   `stock` int(10) UNSIGNED NOT NULL,
   `etat` enum('0','1','2') NOT NULL,
   PRIMARY KEY (`id_distributeur`),
   FOREIGN KEY (`id_distributeur`) REFERENCES `boulanger` (`id_boulanger`) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE KEY `nom` (`nom`),
-  UNIQUE KEY `localisation` (`localisation`),
-  CHECK (`nom` != `` AND `localisation` != ``)
+  UNIQUE KEY `localisation` (`localisation`)
 ) ;
 
 --
@@ -89,6 +85,27 @@ INSERT INTO `distributeur` (`nom`, `localisation`, `stock`, `etat`) VALUES
 ('Distri Carburant', 'Station Service Nord', 52, '1'),
 ('Distri Cinema', 'Cinema Pathe Angers', 51, '0'),
 ('Distri Bowling', 'Bowling Angers', 50, '1');
+
+-- Structure de la table `Config`
+--
+
+CREATE TABLE `Config` (
+  `id_config` int(10) UNSIGNED DEFAULT NULL,
+  `prix` float UNSIGNED NOT NULL CHECK (prix = `1`),
+  `TVA` float UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_config`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Structure de la table `Vente`
+--
+
+CREATE TABLE `Vente` (
+  `id_vente` int(10) UNSIGNED DEFAULT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id_vente`),
+  FOREIGN KEY (`id_vente`) REFERENCES `Config` (`id_config`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_vente`) REFERENCES `distributeur` (`id_distributeur`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
