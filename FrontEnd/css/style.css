@@ -79,3 +79,21 @@ h4{
 body{
     font-family: 'Lora', serif;
 }
+
+#deco{
+    color: #241404;
+}
+
+#map{
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: yellow;
+}
+
+#iframe{
+    width : 700;
+    height: 600;
+    display: block; 
+    align-items: center;
+}
