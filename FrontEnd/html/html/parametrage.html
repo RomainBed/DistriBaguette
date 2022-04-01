@@ -6,18 +6,20 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script type="text/php" src="php/msgfr.php"></script>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="./css/style.css">
         <div id="bandeau">
-            <img src="../image/Logo2.PNG" id="image">
+            <img src="image/Logo2.PNG" id="image">
         </div>
+        <a href="index_login.php" id="deco" class="waves-effect waves-teal btn-flat right">DECONNEXION</a>
     </head>
     <body>
         <nav class="yellow accent-4">
             <div class="nav-content brand-logo center">
                 <ul class="tabs tabs-transparent">
-                <li class="tab"><a class="active" href="parametrage.html">{$AA_par}</a></li>
-                <li class="tab"><a href="accueil_admin.html">{$AA_liste}</a></li>
-                <li class="tab"><a href="achives.html">{$AA_arch}</a></li>
+                <li class="tab"><a class="active" href="index_param.php">{$AA_par}</a></li>
+                <li class="tab"><a href="index_admin.php">{$AA_liste}</a></li>
+                <li class="tab"><a href="index_archive.php">{$AA_arch}</a></li>
+                <li class="tab"><a href="monnayeur.html">{$AA_monna}</a></li>
                 </ul>
             </div>
         </nav>
@@ -27,24 +29,24 @@
             <div class="row center">
                 <div class="col s12 m10 offset-m1 l6 offset-l3">
                     <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form >
+                        <form method="POST">
                             <div class="card-content">
                                 <div class="row center-align">
                                     <span class="card-title grey-text text-darken-4 center-align">{$S_Boulanger}</span>
                                     <div class="input-field col s6">
-                                        <input placeholder="Nom" type="text" name="Nom" required>
+                                        <input placeholder="Nom" type="text" name="nom_boulanger" required>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input placeholder="Prenom" type="text" name="Prenom" required>
+                                        <input placeholder="Prenom" type="text" name="prenom" required>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input type="text" placeholder="Numero de telephone" name="Numero" required>
+                                        <input type="text" placeholder="Numero de telephone" name="telephone" required>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Adresse mail" name="Adresse" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Mail" name="mail" required>
                                     </div>
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' id="submit"></input>
+                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit" />
                             </div>
                         </form>
                     </div>
@@ -55,24 +57,24 @@
             <div class="row center">
                 <div class="col s12 m10 offset-m1 l6 offset-l3">
                     <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form >
+                        <form method="POST">
                             <div class="card-content">
                                 <div class="row center-align">
                                     <span class="card-title grey-text text-darken-4 center-align">{$S_Distributeur}</span>
                                     <div class="input-field col s12">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Nom" name="Nom" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Nom" name="nom_distri" required>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Localisation" name="Localisation" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Localisation" name="localisation" required>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Stock" name="Stock" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Stock" name="stock" required>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Etat" name="Etat" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Etat" name="etat" required>
                                     </div>
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' id="submit"></input>
+                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit2"/>
                             </div>
                         </form>
                     </div>

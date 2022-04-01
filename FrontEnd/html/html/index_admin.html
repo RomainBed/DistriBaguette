@@ -6,70 +6,80 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script type="text/php" src="php/msgfr.php"></script>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="./css/style.css">
         <div id="bandeau">
-            <img src="../image/Logo2.PNG" id="image">
+            <img src="image/Logo2.PNG" id="image">
         </div>
+        <a href="index_login.php" id="deco" class="waves-effect waves-teal btn-flat right">DECONNEXION</a>
     </head>
     <body>
         <nav class="yellow accent-4">
             <div class="nav-content brand-logo center">
                 <ul class="tabs tabs-transparent">
-                <li class="tab"><a href="parametrage.html">{$AA_par}</a></li>
-                <li class="tab"><a class="active" href="accueil_admin.html">{$AA_liste}</a></li>
-                <li class="tab"><a href="achives.html">{$AA_arch}</a></li>
+                <li class="tab"><a href="index_param.php">{$AA_par}</a></li>
+                <li class="tab"><a class="active" href="index_admin.php">{$AA_liste}</a></li>
+                <li class="tab"><a href="index_archive.php">{$AA_arch}</a></li> 
+                <li class="tab"><a href="monnayeur.html">{$AA_monna}</a></li>
                 </ul>
             </div>
         </nav>
         <h5 id="adm">{$AA_admin}</h5>
             <section id="sresp">
-                <section id="s1"> 
-                    <h4 id="sh4">{$AA_titleboul}</h4>
-                    <table class="centered">
-                        <thead>
+                <form method="get">
+                    <section id="s1"> 
+                        <h4 id="sh4">{$AA_titleboul}</h4>
+                        
+                            <table class="centered">
+                                <thead>
+                                    <tr>
+                                        <th>{$BA_name_B}</th>
+                                        <th>{$BA_mail_B}</th>
+                                        <th>{$BA_tel_B}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- BEGIN boulanger -->
+                                <tr>
+                                    <td>{$BA_name_B_1}</td>
+                                    <td>{$BA_mail_B_1}</td>
+                                    <td>{$BA_tel_B_1}</td>
+                                    <td>{$id}</td>
+                                    <td><button value="delete" name="submit" class="transparent"><a class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
+                                </tr>
+                                <!-- END boulanger -->
+                                </tbody>
+                            </table> 
+                        
+                    </section>
+                    <section id="s2"> 
+                        <h4 id="s2h4">{$AA_titledistri}</h4>
+                        <table class="centered">
+                            <thead>
                             <tr>
-                                <th>{$BA_name_B}</th>
-                                <th>{$BA_mail_B}</th>
-                                <th>{$BA_tel_B}</th>
+                                <th>{$DA_name}</th>
+                                <th>{$DA_stack}</th>
+                                <th>{$DA_loc}</th>
+                                <th>{$DA_marche}</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                        <!-- BEGIN distrib -->
-                        <tr>
-                            <td>{$BA_name_B_1}</td>
-                            <td>{$BA_mail_B_1}</td>
-                            <td>{$BA_tel_B_1}</td>
-                        </tr>
-                        <!-- END distrib -->
-                        </tbody>
-                    </table> 
-                </section>
-                <section id="s2"> 
-                    <h4 id="s2h4">{$AA_titledistri}</h4>
-                    <table class="centered">
-                        <thead>
-                        <tr>
-                            <th>{$DA_name}</th>
-                            <th>{$DA_stack}</th>
-                            <th>{$DA_loc}</th>
-                            <th>{$DA_marche}</th>
-                        </tr>
-                        </thead>
+                            </thead>
 
-                        <tbody>
-                        <!-- BEGIN boulanger -->
-                        <tr>
-                            <td>{$DA_name_1}</td>
-                            <td>{$DA_stack_1}</td>
-                            <td>{$DA_loc_1}</td>
-                            <td>{$DA_marche_1}</td>
-                        </tr>
-                        <!-- END boulanger -->
-                        </tbody>
-                    </table> 
-                </section>
+                            <tbody>
+                            <!-- BEGIN distrib -->
+                            <tr>
+                                <td>{$DA_name_1}</td>
+                                <td>{$DA_stack_1}</td>
+                                <td>{$DA_loc_1}</td>
+                                <td>{$DA_marche_1}</td>
+                                <td><button value="delete2" name="submit2" class="transparent"><a class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
+                            </tr>
+                            <!-- END distrib -->
+                            </tbody>
+                        </table> 
+                
+                    </section>
+                </form>
             </section>
-        <footer class="page-footer" id="footer">
+        <footer class="page-footer" id="footer1">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">

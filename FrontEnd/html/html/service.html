@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script type="text/php" src="php/msgfr.php"></script>
-        <link rel="stylesheet" href="../css/style.css">
-        <div id="bandeau">
-            <img src="../image/Logo2.PNG" id="image">
+        <link rel="stylesheet" href="./css/style.css">
+        <div id="bandeau"> 
+            <img src="image/Logo2.PNG" id="image">
         </div>
     </head>
     <body>
@@ -17,18 +17,18 @@
             <div class="row center">
                 <div class="col s12 m10 offset-m1 l6 offset-l3">
                     <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form >
+                        <form method="POST">
                             <div class="card-content">
                                 <div class="row center-align">
                                     <span class="card-title grey-text text-darken-4 center-align">{$S_connect}</span>
                                     <div class="input-field col s12">
-                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Identifiant" name="Identifiant" required>
+                                        <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Identifiant" name="username" required>
                                     </div>
                                     <div class="input-field col s12">
-                                        <input type="password" ng-model="dummyInputs.inputFieldInput" placeholder="MDP" name="mdp" required>
+                                        <input type="password" ng-model="dummyInputs.inputFieldInput" placeholder="MDP" name="password" required>
                                     </div>
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn" value='Login' id="submit"></input>
+                                <input type="submit" class="waves-effect waves-light btn" value="Login" name="submit"></input>
                             </div>
                         </form>
                     </div>
