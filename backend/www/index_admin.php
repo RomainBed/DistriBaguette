@@ -15,6 +15,8 @@ session_start();
 	$tpl->setVar('AA_liste', $AA_liste);
 	$tpl->setVar('AA_par', $AA_par);
 	$tpl->setVar('AA_arch', $AA_arch);
+	$tpl->setVar('AA_monna',$AA_monna);
+	
 	$tpl->setVar('DA_name', $DA_name);
 	$tpl->setVar('DA_stack', $DA_stack);
 	$tpl->setVar('DA_marche', $DA_marche);
@@ -38,9 +40,10 @@ session_start();
 	$tpl->setVar('A_projet',$A_projet);
 	
 
-//BDD connexion Site
+//BDD connexion au Site
 	
-	$request= ("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+	// $request= ("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+	$request= ("SELECT id_boulanger, nom, adresse_mail, telephone FROM boulanger");
 
 	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 	$result = $pdo->prepare($request);
@@ -50,23 +53,56 @@ session_start();
 	foreach($results as $donnee){
 
 		$tpl->setVar('AA_titleboul', $AA_titleboul);
-		
-		$tpl->setVar('A_nom_distri', $donnee['place']);
-		
-		$tpl->setVar('DA_loc_1', $donnee['localisation']);
-		$tpl->setVar('DA_stack_1', $donnee['stock']);
-		$tpl->setVar('DA_marche_1', $donnee['etat']);
-		$tpl->setVar('DA_name_1', $donnee['place']);
-		
-		$tpl->render('distrib', $donnee);
-		
+				
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
 		$tpl->setVar('BA_name_B_1', $donnee['nom']);
 		$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
+		$tpl->setVar('id', $donnee['id_boulanger']);
 		
 
 		$tpl->render('boulanger', $donnee);
 	}
+
+	$request2= ("SELECT place, localisation, stock, etat FROM distributeur");
+	
+	$result2 = $pdo->prepare($request2);
+	$result2->execute();
+	$results2 = $result2->fetchAll();
+	
+	$id= $donnee['id_boulanger'];
+	
+	if ( @$_GET['submit'] == $id ){
+	
+		echo $id;
+	  try {
+		  $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $username, $password);
+
+		  if ( $pdo ) {
+			  
+			$pdo->execute("DELETE FROM boulanger WHERE id_boulanger = $id");
+
+			  header("Location: index_admin.php");
+			}
+		}
+	  catch(PDOexception $e) {
+		echo $e->getMessage();
+		}
+	}
+	
+foreach($results2 as $donnee2){
+		
+		$tpl->setVar('A_nom_distri', $donnee2['place']);
+		
+		$tpl->setVar('DA_loc_1', $donnee2['localisation']);
+		$tpl->setVar('DA_stack_1', $donnee2['stock']);
+		$tpl->setVar('DA_marche_1', $donnee2['etat']);
+		$tpl->setVar('DA_name_1', $donnee2['place']);
+		
+		$tpl->render('distrib', $donnee2);
+		
+	}
+
+
 
 	echo $tpl->render();
 

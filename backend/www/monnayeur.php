@@ -7,7 +7,7 @@ session_start();
 	require 'config.php';
 
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('archives.html');
+	$tpl->importFile('monnayeur.html');
 
 // Lien des variables HTML -> PHP
 
@@ -21,11 +21,12 @@ session_start();
 	$tpl->setVar('A_footertitle',$A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	$tpl->setVar('SA_archives',$SA_archives);
+	$tpl->setVar('SA_monnayeur',$SA_monnayeur);
 	$tpl->setVar('SA_nomDistri',$SA_nomDistri);
-	$tpl->setVar('SA_vente',$SA_vente);
-	$tpl->setVar('SA_total',$SA_total);
-	
+	$tpl->setVar('SA_nombre_bag_achete',$SA_nombre_bag_achete);
+	$tpl->setVar('SA_prix',$SA_prix);
+
+
 //BDD connexion Site
 		
 		$request=("SELECT place FROM distributeur");
@@ -42,8 +43,7 @@ session_start();
 		foreach($results as $donnee)
 		{			
 				$tpl->setVar('SA_nomDistri_1',$donnee['place']);
-				// $tpl->setVar('SA_vente_1',$donnee['SA_vente_1']);
-				// $tpl->setVar('SA_total_1',$donnee['SA_total_1']);			
+		
 				$tpl->setVar('id',$id);
 							
 	// Rendu du distributeur avec les données

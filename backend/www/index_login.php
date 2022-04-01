@@ -10,9 +10,14 @@ session_start();
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('service.html');
 	
+// Lien des variables HTML -> PHP
+	//Title global
 	$tpl->setVar('A_page', $A_page);
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
+	$tpl->setVar('AA_monna',$AA_monna);
+	
+	//Titre pour la page
 	$tpl->setVar('S_admin',$S_admin);
 	$tpl->setVar('S_connect',$S_connect);
 	
