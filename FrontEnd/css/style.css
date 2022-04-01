@@ -97,3 +97,7 @@ body{
     display: block; 
     align-items: center;
 }
+
+#deco{
+    margin-top: auto;
+}
