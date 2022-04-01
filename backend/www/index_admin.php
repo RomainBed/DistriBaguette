@@ -41,11 +41,24 @@ session_start();
 	
 
 //BDD connexion au Site
+	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 	
-	// $request= ("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+	// suppression d'un id 
+	if ( @$_GET['id_boulanger']) {
+		$id = $_GET['id_boulanger'];
+		if ( $pdo )
+			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id");
+		}
+	if ( @$_GET['id_distributeur']) {
+		$id = $_GET['id_distributeur'];
+		if ( $pdo )
+			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id");
+		}
+	
+	// -- lecture base de données
+	//$request= ("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
 	$request= ("SELECT id_boulanger, nom, adresse_mail, telephone FROM boulanger");
 
-	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 	$result = $pdo->prepare($request);
 	$result->execute();
 	$results = $result->fetchAll();
@@ -57,48 +70,28 @@ session_start();
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
 		$tpl->setVar('BA_name_B_1', $donnee['nom']);
 		$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
-		$tpl->setVar('id', $donnee['id_boulanger']);
+		$tpl->setVar('id_boulanger', $donnee['id_boulanger']);
 		
-
 		$tpl->render('boulanger', $donnee);
 	}
 
-	$request2= ("SELECT place, localisation, stock, etat FROM distributeur");
+	$request = ("SELECT id_distributeur, place, localisation, stock, etat FROM distributeur");
 	
-	$result2 = $pdo->prepare($request2);
-	$result2->execute();
-	$results2 = $result2->fetchAll();
-	
-	$id= $donnee['id_boulanger'];
-	
-	if ( @$_GET['submit'] == $id ){
-	
-		echo $id;
-	  try {
-		  $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $username, $password);
+	$result = $pdo->prepare($request);
+	$result->execute();
+	$results = $result->fetchAll();
 
-		  if ( $pdo ) {
-			  
-			$pdo->execute("DELETE FROM boulanger WHERE id_boulanger = $id");
-
-			  header("Location: index_admin.php");
-			}
-		}
-	  catch(PDOexception $e) {
-		echo $e->getMessage();
-		}
-	}
-	
-foreach($results2 as $donnee2){
+foreach($results as $donnee){
 		
-		$tpl->setVar('A_nom_distri', $donnee2['place']);
+		$tpl->setVar('A_nom_distri', $donnee['place']);
 		
-		$tpl->setVar('DA_loc_1', $donnee2['localisation']);
-		$tpl->setVar('DA_stack_1', $donnee2['stock']);
-		$tpl->setVar('DA_marche_1', $donnee2['etat']);
-		$tpl->setVar('DA_name_1', $donnee2['place']);
+		$tpl->setVar('DA_loc_1', $donnee['localisation']);
+		$tpl->setVar('DA_stack_1', $donnee['stock']);
+		$tpl->setVar('DA_marche_1', $donnee['etat']);
+		$tpl->setVar('DA_name_1', $donnee['place']);
+		$tpl->setVar('id_distributeur', $donnee['id_distributeur']);
 		
-		$tpl->render('distrib', $donnee2);
+		$tpl->render('distrib', $donnee);
 		
 	}
 

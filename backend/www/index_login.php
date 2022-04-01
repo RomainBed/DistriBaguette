@@ -15,7 +15,6 @@ session_start();
 	$tpl->setVar('A_page', $A_page);
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
-	$tpl->setVar('AA_monna',$AA_monna);
 	
 	//Titre pour la page
 	$tpl->setVar('S_admin',$S_admin);
