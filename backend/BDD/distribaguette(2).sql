@@ -34,7 +34,6 @@ CREATE TABLE `boulanger` (
   `telephone` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id_boulanger`),
   UNIQUE KEY `nom` (`nom`),
-  UNIQUE KEY `prenom` (`prenom`),
   UNIQUE KEY `adresse_mail` (`adresse_mail`),
   UNIQUE KEY `telephone` (`telephone`))
  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
