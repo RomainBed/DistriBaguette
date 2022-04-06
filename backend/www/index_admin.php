@@ -1,15 +1,22 @@
 <?php
+/* INFORMATIONS DE LA PAGE
+=> PAGE ADMIN LISTE
+
+Affiche deux tableaux où l'on peut voir et supprimer un boulanger ou un distributeurs
+
+*/
+
 session_start();
 //Intégration de la bibliothèque Hyla_Tpl
 
-	require './lib/hyla_tpl.class.php';
-	require './php/msgfr.php';
-	require './config.php';
+	require 'lib/hyla_tpl.class.php';
+	require 'php/msgfr.php';
+	require 'connection.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
 
-// Lien des variables HTML -> PHP
+// association des variables HTML vers PHP
 
 	$tpl->setVar('AA_admin', $AA_admin);
 	$tpl->setVar('AA_liste', $AA_liste);
@@ -43,26 +50,30 @@ session_start();
 //BDD connexion au Site
 	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 	
-	// suppression d'un id 
+// suppression d'un id_boulanger
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
 		if ( $pdo )
 			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id");
 		}
+// suppression d'un id_distributeur	
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
 		if ( $pdo )
 			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id");
 		}
 	
-	// -- lecture base de données
-	//$request= ("SELECT D.place, D.localisation, D.stock, D.etat, B.nom, B.adresse_mail, B.telephone FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
+// -- lecture base de données
+
+// Liste de Boulanger
+
 	$request= ("SELECT id_boulanger, nom, adresse_mail, telephone FROM boulanger");
 
 	$result = $pdo->prepare($request);
 	$result->execute();
 	$results = $result->fetchAll();
-		// Boucle tant qu'il y a des données il continue à incrementer
+	
+	// Boucle tant qu'il y a des données il continue à incrementer
 	foreach($results as $donnee){
 
 		$tpl->setVar('AA_titleboul', $AA_titleboul);
@@ -74,6 +85,7 @@ session_start();
 		
 		$tpl->render('boulanger', $donnee);
 	}
+//Liste de Distributeur
 
 	$request = ("SELECT id_distributeur, place, localisation, stock, etat FROM distributeur");
 	

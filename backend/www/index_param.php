@@ -1,25 +1,44 @@
 <?php	
+/* INFORMATIONS DE LA PAGE
+=> PAGE ADMIN PARAMETRAGE
+
+Affiche deux cadres où l'on peut ajouter un boulanger et un distributeur dans la bdd
+
+	Conditions d'ajout pour le boulanger:
+		- Nom
+		- Prénom
+		- Numéro de téléphone
+		- Adresse mail
+		
+	Conditions d'ajout pour le distributeur:
+		- Nom
+		- Localisation
+		- Stock
+		- Etat
+*/
+
 session_start();
 //Intégration de la bibliothèque Hyla_Tpl
 
-	require './lib/hyla_tpl.class.php';
-	require './php/msgfr.php';
-	require './config.php';
+	require 'lib/hyla_tpl.class.php';
+	require 'php/msgfr.php';
+	require 'connection.php';
 
+//Affectation du fichier HTML
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('parametrage.html');
 
-// Lien des variables HTML -> PHP
-	//Title global
+// association des variables HTML vers PHP
+	//Titres principaux
 	$tpl->setVar('A_page', $A_page);
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page
+	//Titre pour la page concernée
 	$tpl->setVar('S_admin',$S_admin);
 	$tpl->setVar('S_connect',$S_connect);
 	
-	//Onglet 
+	//Onglets 
 	$tpl->setVar('AA_par',$AA_par);
 	$tpl->setVar('AA_liste',$AA_liste);
 	$tpl->setVar('AA_arch',$AA_arch);
@@ -32,7 +51,7 @@ session_start();
 	
 	// $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
 
-// Ajouter un boulanger
+// Ajouter un boulanger avec le bouton "Envoyer"
 
 	if ( @$_POST['submit'] == "Envoyer" ){
 		
@@ -55,14 +74,13 @@ session_start();
 			}
 		}
 		
-	  catch(PDOexception $e) {
-		  
-		echo $e->getMessage();
-		
-		}
+	catch(Exception	$e)
+	{
+		echo "erreur";
+	}
 	}
 	
-// Ajouter un distributeur
+// Ajouter un distributeur avec le bouton "Envoyer"
 
 	if ( @$_POST['submit2'] == "Envoyer" ){
 		
@@ -73,23 +91,22 @@ session_start();
 
 	  try {
 		  // $result2 = $pdo->prepare($file->$param_distributeur);
-		  $request2=("INSERT INTO distributeur (place, localisation, stock, etat) VALUES('$nameD', '$localisation', '$stock', '$etat')");		  
-		  $result2 = $pdo->prepare($request2);
-		  $result2->execute();
+		  $request=("INSERT INTO distributeur (place, localisation, stock, etat) VALUES('$nameD', '$localisation', '$stock', '$etat')");		  
+		  $result = $pdo->prepare($request2);
+		  $result->execute();
 
-		  if ( $result2 ) {	
-			   
+		  if ( $result ) {	
+			  //redirection vers la page liste si la requête SQL à fonctionnée
 			  header("Location: index_admin.php");
 			}else{
 				echo "Erreur lors de l'ajout";
 			}
 		}
 		
-	  catch(PDOexception $e) {
-		  
-		echo $e->getMessage();
-		
-		}
+	catch(Exception	$e)
+	{
+		echo "erreur";
+	}
 	}
 
 	echo $tpl->render();
