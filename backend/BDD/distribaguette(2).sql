@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `boulanger` (
   `id_boulanger` int UNSIGNED DEFAULT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL CHECK (`nom` != ``),
-  `prenom` varchar(30) NOT NULL CHECK (`prenom` != ``),
-  `adresse_mail` varchar(40) NOT NULL  CHECK (`adresse_mail` != ``),
-  `telephone` int(10) UNSIGNED NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `adresse_mail` varchar(50) NOT NULL  CHECK (`adresse_mail` != ``),
+  `telephone` int(10) UNSIGNED NOT NULL CHECK (`telephone` != ``),
   PRIMARY KEY (`id_boulanger`),
   UNIQUE KEY `nom` (`nom`),
   UNIQUE KEY `adresse_mail` (`adresse_mail`),
@@ -89,7 +89,7 @@ INSERT INTO `distributeur` (`nom`, `localisation`, `stock`, `etat`) VALUES
 --
 
 CREATE TABLE `Config` (
-  `id_config` int(10) UNSIGNED DEFAULT NULL,
+  `id_config` int(10) UNSIGNED DEFAULT NULL AUTO_INCREMENT,
   `prix` float UNSIGNED NOT NULL CHECK (prix = `1`),
   `TVA` float UNSIGNED NOT NULL,
   PRIMARY KEY (`id_config`)
@@ -99,13 +99,39 @@ CREATE TABLE `Config` (
 --
 
 CREATE TABLE `Vente` (
-  `id_vente` int(10) UNSIGNED DEFAULT NULL,
+  `id_vente` int(10) UNSIGNED DEFAULT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   PRIMARY KEY (`id_vente`),
   FOREIGN KEY (`id_vente`) REFERENCES `Config` (`id_config`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_vente`) REFERENCES `distributeur` (`id_distributeur`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Structure de la table `Vente`
+--
+
+CREATE TABLE `coordonnees` (
+  `id_coord` int UNSIGNED DEFAULT NULL AUTO_INCREMENT,
+  `Latitude` float NOT NULL,
+  `Longitude` float NOT NULL,
+  `nom_coord` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_coord`),
+  UNIQUE KEY (`nom_coord`),
+  FOREIGN KEY (`id_coord`) REFERENCES `distributeur` (`id_distributeur`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Contenu de la table `distributeur`
+--
+INSERT INTO `coordonnees` (`Latitude`, `Longitude`, `nom_coord`) VALUES
+(47.4708, -0.547521, 'Mairie'),
+(47.4992, -0.564954, 'Parc'),
+(47.4627, -0.532281, 'Stade'),
+(47.4937, -0.569484, 'Piscine'),
+(47.4683, 0.530101, 'Centre'),
+(47.4713, -0.553791, 'raliement'),
+(47.4681, -0.545782, 'Gymnase'),
+(47.4792, -0.552312, 'Carburant'),
+(47.4792, -0.552312, 'Cinema');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
