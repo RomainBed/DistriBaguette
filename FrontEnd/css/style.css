@@ -101,3 +101,8 @@ body{
 #deco{
     margin-top: auto;
 }
+
+#erreur{
+    text-align: center;
+    margin-top: 20%;
+}
