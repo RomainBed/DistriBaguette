@@ -10,7 +10,7 @@
         <div id="bandeau">
             <img src="image/Logo2.PNG" id="image">
         </div>
-        <a href="index_login.php" id="deco" class="waves-effect waves-teal btn-flat right">DECONNEXION</a>
+        <a href="deconnection.php" id="deco" class="waves-effect waves-teal btn-flat right">DECONNEXION</a>
     </head>
     <body>
         <nav class="yellow accent-4">
@@ -19,11 +19,11 @@
                 <li class="tab"><a class="active" href="index_param.php">{$AA_par}</a></li>
                 <li class="tab"><a href="index_admin.php">{$AA_liste}</a></li>
                 <li class="tab"><a href="index_archive.php">{$AA_arch}</a></li>
-                <li class="tab"><a href="monnayeur.html">{$AA_monna}</a></li>
+                <li class="tab"><a href="index_monnayeur.php">{$AA_monna}</a></li>
                 </ul>
             </div>
         </nav>
-        <h5 id="adm">{$AA_admin}</h5>
+        <h5 id="adm" class="left">{$AA_admin}</h5>
         <h4 class="center">{$S_admin}</h4>
         <div ng-app="FireCart" ng-controller="AuthController">
             <div class="row center">
