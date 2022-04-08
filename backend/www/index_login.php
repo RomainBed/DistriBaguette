@@ -45,7 +45,7 @@ session_start();
 		}
 	catch(Exception	$e)
 	{
-		echo "erreur";
+		header("Location: erreur.php");
 	}
 	}
 	echo $tpl->render();
