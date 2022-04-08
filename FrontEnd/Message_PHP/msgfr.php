@@ -52,6 +52,10 @@ $SA_monnayeur = "Monnayeur";
 $SA_nombre_bag_achete = "Nombre de baguettes achetées";
 $SA_prix = "Prix";
 
+//Service erreur
+$SE_erreur = "ERREUR DE CONNEXION";
+$SE_retour = "RETOUR";
+
 // ID 
 $id = "id";
 ?>
