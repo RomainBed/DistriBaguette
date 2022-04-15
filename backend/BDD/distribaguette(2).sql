@@ -31,7 +31,7 @@ CREATE TABLE `boulanger` (
   `nom` varchar(30) NOT NULL CHECK (`nom` != ``),
   `prenom` varchar(30) NOT NULL,
   `adresse_mail` varchar(50) NOT NULL  CHECK (`adresse_mail` != ``),
-  `telephone` int(10) UNSIGNED NOT NULL CHECK (`telephone` != ``),
+  `telephone` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id_boulanger`),
   UNIQUE KEY `nom` (`nom`),
   UNIQUE KEY `adresse_mail` (`adresse_mail`),
