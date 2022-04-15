@@ -3,33 +3,43 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>{$A_page}</title>
-		<!-- Compiled and minified CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-
 	  	<link rel="stylesheet" href="../css/style.css" />
-
-		<!-- Compiled and minified JavaScript -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	</head>
     <body>
         <div id="bandeau">
-            <img src="image/Logo2.PNG" id="image">
+            <img src="../image/Logo2.PNG" id="image">
         </div>
-        <a href="deconnection.php" id="deco" class="waves-effect waves-teal btn-flat right"><i class="material-icons">power_settings_new</i></a>
         <nav class="yellow accent-4">
             <div class="nav-content brand-logo center">
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a href="index_param.php">{$AA_par}</a></li>
+                <ul class="tabs tabs-transparent"> 
                     <li class="tab"><a class="active" href="index_admin.php">{$AA_liste}</a></li>
                     <li class="tab"><a href="index_archive.php">{$AA_arch}</a></li> 
                     <li class="tab"><a href="index_monnayeur.php">{$AA_monna}</a></li>
                 </ul>
             </div>
+            <a class="btn-flat-large dropdown-trigger" href='#' data-target='dropdown'><i class="material-icons">menu</i></a>
+            <ul id='dropdown' class='dropdown-content grey lighten-2'>
+                <li><a href="pagelistedistri">Liste Distri</a></li>
+                <li><a href="pagelisteboulange">Liste Boulanger</a></li>
+                <li><a href="pagestats">Statistiques</a></li>
+                <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
+            </ul>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                var drop = document.querySelectorAll('.dropdown-trigger');
+                M.Dropdown.init(drop,{
+                    inDuration: 500,
+                    constrainWidth: false,
+                    coverTrigger: false,
+                    });
+                });
+            </script>
         </nav>
             <main id="sresp">
                 <form method="GET" action="index_admin.php">
@@ -46,10 +56,11 @@
                                 <tbody>
                                 <!-- BEGIN boulanger -->
                                 <tr>
-                                    <td>{$BA_name_B_1}</td>
+                                    <td>{$BA_name_B_1} {$BA_prenom_B_1}</td>
                                     <td>{$BA_mail_B_1}</td>
                                     <td>{$BA_tel_B_1}</td>
-                                    <td><button type="submit" value="{$id_boulanger}" name="id_boulanger"<a class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
+                                    <td><a type="submit" href="modif_boulanger.php" class="btn-floating grey darken-3"><i class="material-icons">mode_edit</i></a></td>
+                                    <td><button type="submit" value="{$id_boulanger}" name="id_boulanger" class="btn-floating grey darken-3"><i class="material-icons">delete</i></button></td>
                                 </tr>
                                 <!-- END boulanger -->
                                 </tbody>
@@ -61,7 +72,7 @@
                             <thead>
                             <tr>
                                 <th>{$DA_name}</th>
-                                <th>{$DA_stack}</th>
+                                <th>{$DA_stock}</th>
                                 <th>{$DA_loc}</th>
                                 <th>{$DA_marche}</th>
                             </tr>
@@ -71,10 +82,11 @@
                             <!-- BEGIN distrib -->
                             <tr>
                                 <td>{$DA_name_1}</td>
-                                <td>{$DA_stack_1}</td>
+                                <td>{$DA_stock_1}</td>
                                 <td>{$DA_loc_1}</td>
                                 <td>{$DA_marche_1}</td>
-                                <td><button type="submit" value="{$id_distributeur}" name="id_distributeur"<a class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
+                                <td><a type="submit" href="modif_distri.php" class="btn-floating grey darken-3"><i class="material-icons">mode_edit</i></a></td>
+                                <td><button type="submit" value="{$id_distributeur}" name="id_distributeur" class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
                             </tr>
                             <!-- END distrib -->
                             </tbody>
@@ -89,18 +101,18 @@
 			</a>
 			<ul>
 				<li>
-					<a href="popboulange.html" class="btn-floating bleue lighten-1" onClick="window.document.location.href='popboulange';">
-						<i class="material-icons">account_circle</i>
+					<a href="ajout_distri.php" class="btn-floating bleue lighten-1" onClick="window.document.location.href='popboulange.html';">
+						<i class="material-icons">bakery_dining</i>
 					</a>
 				</li>
 				<li>
-					<a href="popdistri.html" class="btn-floating bleue lighten-1" onClick="window.document.location.href='popdistri';">
-						<i class="material-icons">bakery_dining</i>
+					<a href="ajout_boulanger.php" class="btn-floating bleue lighten-1" onClick="window.document.location.href='popdistri';">
+						<i class="material-icons">account_circle</i>
 					</a>
 				</li>
 			</ul>
 		</div>	
-        <footer class="page-footer" id="footer">
+        <footer class="page-footer" id="footer1">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">

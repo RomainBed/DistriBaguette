@@ -1,17 +1,19 @@
 <!DOCTYPE html>
   <html>
-    <head>
-        <title>{$A_page}</title>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<head>
+		<meta charset="utf-8" />
+		<title>{$A_page}</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script type="text/php" src="php/msgfr.php"></script>
-        <link rel="stylesheet" href="css/style.css">
+	  	<link rel="stylesheet" href="../css/style.css" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+    <body>
         <div id="bandeau"> 
             <img src="image/Logo2.PNG" id="image">
         </div>
-    </head>
-    <body>
         <div id="erreur" style="text-align: center; margin-top: 20%;">
             <h4>{$SE_erreur}</h4>
             <a href="index_login.php" class="waves-effect waves-light btn">{$SE_retour}</a>
