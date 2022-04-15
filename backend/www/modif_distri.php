@@ -36,33 +36,27 @@ session_start();
 	$tpl->setVar('AA_par',$AA_par);
 	$tpl->setVar('S_admin',$S_admin);
 	
-	$tpl->setVar('S_Distributeur',$S_Distributeur);
+	$tpl->setVar('S_DistributeurModif',$S_DistributeurModif);
 	
 // Ajouter un distributeur avec le bouton "Envoyer"
 
-$request=("SELECT * FROM boulanger WHERE id_distributeur='$id'");
-$result = $pdo->prepare($request);
-$result->execute();
-$results = $result->fetchAll();
-
 	if ( @$_GET['id_distributeur']) {
-		$id = $_GET['msg'];
-		$tpl->setVar('id_distributeur',$id);
+		$id = $_GET['id_distributeur'];
 		
-		$tpl->setVar('DA_name_1',$test);
-		$tpl->setVar('DA_loc_1',$results['localisation']);
-		$tpl->setVar('DA_stock_1',$$results['stock']);
-		$tpl->setVar('DA_marche_1',$results['etat']);
+		$request = file_get_contents("sql/select_id_distributeur.txt");
+		$result = $pdo->prepare($request);
+		$result->execute(array($id));
 		
-		if ( $pdo )
-			$pdo->query("SELECT * FROM boulanger WHERE id_distributeur='$id'");
-			$nameD = $_POST['nom_distri'];
-			$stock = $_POST['stock'];
-			$etat = $_POST['etat'];
-			$localisation = $_POST['localisation'];
+		foreach ( $result->fetchAll() as $donnee ) {
+			$tpl->setVar('DA_name_1', $donnee['place']);
+			$tpl->setVar('DA_loc_1', $donnee['localisation']);
+			$tpl->setVar('DA_stock_1', $donnee['stock']);
+			$tpl->setVar('DA_marche_1', $donnee['etat']);
+			}
+
 		}		
 		
-	if ( @$_POST['submit2'] == "Envoyer" ){
+	if ( @$_POST['submit'] == "Envoyer" ){
 				
 	  try {
 		  $nameD = stripslashes($_POST['nom_distri']);
@@ -71,7 +65,7 @@ $results = $result->fetchAll();
 		  $localisation = stripslashes($_POST['localisation']);
 		  
 		  $request=("UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock', etat='$etat' WHERE id_distributeur='$id'");		  
-		  $result = $pdo->prepare($request2);
+		  $result = $pdo->prepare($request);
 		  $result->execute();
 
 		  if ( $result ) {	

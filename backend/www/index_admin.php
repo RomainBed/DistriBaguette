@@ -61,15 +61,7 @@ session_start();
 		if ( $pdo )
 			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id");
 		}
-	
-	if ( @$_POST['submitmodif'] == "Envoyer" ){
-		$id = $_GET['id_distributeur'];
-		if ( @$_GET['id_distributeur'])
-			header("Location: index_admin.php");
-			
-		}
-	
-	
+
 // -- lecture base de données
 
 // Liste de Boulanger

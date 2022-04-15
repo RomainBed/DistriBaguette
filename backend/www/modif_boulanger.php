@@ -36,9 +36,25 @@ session_start();
 	$tpl->setVar('AA_par',$AA_par);
 	$tpl->setVar('S_admin',$S_admin);
 	
-	$tpl->setVar('S_Boulanger',$S_Boulanger);
+	$tpl->setVar('S_BoulangerModif',$S_BoulangerModif);
 	
 // Ajouter un boulanger avec le bouton "Envoyer"
+
+
+	if ( @$_GET['id_boulanger']) {
+		$id = $_GET['id_boulanger'];
+		
+		$request = file_get_contents("sql/select_id_boulanger.txt");
+		$result = $pdo->prepare($request);
+		$result->execute(array($id));
+		
+		foreach ( $result->fetchAll() as $donnee ) {
+			$tpl->setVar('BA_name_B_1', $donnee['nom']);
+			$tpl->setVar('BA_prenom_B_1', $donnee['prenom']);
+			$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
+			$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
+			}
+		}		
 
 	if ( @$_POST['submit'] == "Envoyer" ){
 		
