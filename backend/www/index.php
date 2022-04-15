@@ -76,6 +76,8 @@ Affiche la liste des distributeurs disponnible on retrouve:
 			$tpl->setVar('D_stock_1', $donnee['stock']);
 			$tpl->setVar('D_etat_1', $donnee['etat']);
 			$tpl->setVar('D_boulanger_1', $donnee['nom']);
+														 
+
 			
 	// Associer le bloc distrib avec les données récupérées 
 			$tpl->render('distrib', $donnee);
