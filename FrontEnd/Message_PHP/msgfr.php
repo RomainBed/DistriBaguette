@@ -24,14 +24,16 @@ $AA_titleboul = "Boulangers";
 $AA_monna = "Monnayeur";
 
 // Tableau de donnés ADMINISTRATION
-$DA_marche = "Etat";
+$DA_num = "Num";
 $DA_name = "Nom";
-$DA_stack = "Stock";
+$DA_stock = "Stock";
 $DA_loc = "Localisation";
 
 $BA_name_B = "Nom / Prenom";
 $BA_mail_B = "Adresse mail";
 $BA_tel_B = "Telephone";
+
+$BA_num_B = "Num";
 
 //Service Authentifiaction
 $S_admin = "Service Admin";
@@ -42,19 +44,24 @@ $S_Boulanger = "Ajouter un boulanger";
 $S_Distributeur = "Ajouter un distributeur";
 
 //Service Archives
-$SA_archives = "Archives";
+$SA_stat_distri = "Statistique journalier des distributeurs";
 $SA_nomDistri = "Nom distributeur";
-$SA_vente = "Baguette vendue / jour";
-$SA_total = "Total / an";
+$SA_vente = "Baguettes vendues / jour";
+$SA_date = "Date";
 
 //Service monnayeur
 $SA_monnayeur = "Monnayeur";
 $SA_nombre_bag_achete = "Nombre de baguettes achetées";
-$SA_prix = "Prix";
 
 //Service erreur
 $SE_erreur = "ERREUR DE CONNEXION";
 $SE_retour = "RETOUR";
+
+//Service Distributeur Modif
+$S_DistributeurModif = "Modification du distributeur";
+
+//Service Boulanger Modif
+$S_BoulangerModif = "Modification du boulanger";
 
 // ID 
 $id = "id";
