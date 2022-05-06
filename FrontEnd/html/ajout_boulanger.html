@@ -19,7 +19,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">Modif Distri</a>
+                    <a href="#" class="brand-logo center">Ajout Boulanger</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
@@ -43,6 +43,7 @@
             <li class="divider"></li>
             <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
         </ul>
+
         <div ng-app="FireCart" ng-controller="AuthController">
             <div class="row center">
                 <div class="col s12 m10 offset-m1 l6 offset-l3">
@@ -50,18 +51,21 @@
                         <form method="POST">
                             <div class="card-content">
                                 <div class="row center-align">
-                                    <span class="card-title grey-text text-darken-4 center-align">{$S_DistributeurModif}</span>
-                                    <div class="input-field col s12">
-                                        <input type="text" value="{$DA_name_1}" placeholder="Nom" name="nom_distri" required>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input type="text" value="{$DA_loc_1}" placeholder="Localisation" name="localisation" required>
+                                    <span class="card-title grey-text text-darken-4 center-align">{$S_Boulanger}</span>
+                                    <div class="input-field col s6">
+                                        <input value="{$BA_name_B_1}" placeholder="Nom" type="text" name="nom_boulanger" required>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input type="text" value="{$DA_stock_1}" placeholder="Stock" name="stock" required>
+                                        <input value="{$BA_prenom_B_1}" placeholder="Prenom" type="text" name="prenom" required>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input value="{$BA_mail_B_1}" type="text" placeholder="Mail" name="mail" required>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input value="{$BA_tel_B_1}" type="text" placeholder="Numéro de téléphone" name="téléphone" required>
                                     </div>
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit"/>
+                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit" />
                             </div>
                         </form>
                     </div>
