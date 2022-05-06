@@ -1,0 +1,15 @@
+$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','client','client');
+
+index_select = SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur
+
+boulanger_delete = DELETE FROM boulanger WHERE id_boulanger = $id;ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST
+boulanger_select = SELECT id_boulanger, nom, prenom, adresse_mail, telephone FROM boulanger
+boulanger_update = UPDATE boulanger SET nom='$nameB', prenom='$user', adresse_mail='$email', telephone='$telephone', id_boulanger='$numero' WHERE id_boulanger='$id'
+boulanger_insert = ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO boulanger (nom, prenom, adresse_mail, telephone) VALUES('$nameB', '$user', '$email', '$telephone')
+
+distributeur_delete = DELETE FROM distributeur WHERE id_distributeur = $id;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST
+distributeur_select = SELECT id_distributeur, place, localisation, stock, etat FROM distributeur
+distributeur_update = UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock' WHERE id_distributeur='$id';ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST
+distributeur_insert = ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO distributeur (place, localisation, stock) VALUES('$nameD', '$localisation', '$stock')
+
+SELECT * FROM distributeur WHERE id_distributeur= '$id'
