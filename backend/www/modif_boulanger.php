@@ -43,7 +43,6 @@ session_start();
 
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
-		
 		$request = file_get_contents("sql/select_id_boulanger.txt");
 		$result = $pdo->prepare($request);
 		$result->execute(array($id));
@@ -53,6 +52,7 @@ session_start();
 			$tpl->setVar('BA_prenom_B_1', $donnee['prenom']);
 			$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
 			$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
+			$tpl->setVar('BA_num_B_1', $donnee['id_boulanger']);
 			}
 		}		
 
@@ -62,15 +62,14 @@ session_start();
 	$user = stripslashes($_POST['prenom']);
 	$email = stripslashes($_POST['mail']);
 	$telephone = stripslashes($_POST['telephone']);
+	$numero = stripslashes($_POST['numero']);
 
 	  try {
-		  // $result = $pdo->prepare($file->$param_boulanger);
-		  $request=("INSERT INTO boulanger (nom, prenom, adresse_mail, telephone) VALUES('$nameB', '$user', '$email', '$telephone')");		  
+		  $request=("UPDATE boulanger SET nom='$nameB', prenom='$user', adresse_mail='$email', telephone='$telephone', id_boulanger='$numero' WHERE id_boulanger='$id'");		  
 		  $result = $pdo->prepare($request);
 		  $result->execute();
 
 		  if ( $result ) {	
-			   
 			  header("Location: index_admin.php");
 			}else{
 				echo "Erreur lors de l'ajout";

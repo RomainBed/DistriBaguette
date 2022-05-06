@@ -49,12 +49,12 @@ session_start();
 
 	  try {
 		  // $result = $pdo->prepare($file->$param_boulanger);
-		  $request=("INSERT INTO boulanger (nom, prenom, adresse_mail, telephone) VALUES('$nameB', '$user', '$email', '$telephone')");		  
-		  $result = $pdo->prepare($request);
-		  $result->execute();
+			$request=("ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO boulanger (nom, prenom, adresse_mail, telephone) VALUES('$nameB', '$user', '$email', '$telephone')");		  
+			$result = $pdo->prepare($request);
+			$result->execute();
+		  
 
 		  if ( $result ) {	
-			   
 			  header("Location: index_admin.php");
 			}else{
 				echo "Erreur lors de l'ajout";

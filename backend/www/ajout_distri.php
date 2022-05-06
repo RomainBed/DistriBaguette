@@ -44,13 +44,12 @@ session_start();
 		
 	$nameD = stripslashes($_POST['nom_distri']);
 	$stock = stripslashes($_POST['stock']);
-	$etat = stripslashes($_POST['etat']);
 	$localisation = stripslashes($_POST['localisation']);
 
 	  try {
 		  // $result2 = $pdo->prepare($file->$param_distributeur);
-		  $request=("INSERT INTO distributeur (place, localisation, stock, etat) VALUES('$nameD', '$localisation', '$stock', '$etat')");		  
-		  $result = $pdo->prepare($request2);
+		  $request=("ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO distributeur (place, localisation, stock) VALUES('$nameD', '$localisation', '$stock')");		  
+		  $result = $pdo->prepare($request);
 		  $result->execute();
 
 		  if ( $result ) {	

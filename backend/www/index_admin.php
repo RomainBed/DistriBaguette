@@ -33,11 +33,15 @@ session_start();
 	$tpl->setVar('DA_marche', $DA_marche);
 	$tpl->setVar('DA_stock', $DA_stock);
 	$tpl->setVar('DA_loc', $DA_loc);
+
 	
 	// boulanger
 	$tpl->setVar('BA_name_B', $BA_name_B);
 	$tpl->setVar('BA_mail_B', $BA_mail_B);
 	$tpl->setVar('BA_tel_B', $BA_tel_B);
+	$tpl->setVar('DA_marche', $DA_marche);
+	$tpl->setVar('BA_num_B', $BA_num_B);
+	
 	
 	// footer/page
 	$tpl->setVar('A_page', $A_page);
@@ -53,13 +57,13 @@ session_start();
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
 		if ( $pdo )
-			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id");
+			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id;ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
 		}
 // suppression d'un id_distributeur	
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
 		if ( $pdo )
-			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id");
+			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
 		}
 
 // -- lecture base de données
@@ -77,11 +81,13 @@ session_start();
 
 		$tpl->setVar('AA_titleboul', $AA_titleboul);
 				
+		$tpl->setVar('BA_num_B_1', $donnee['id_boulanger']);
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
 		$tpl->setVar('BA_name_B_1', $donnee['nom']);
 		$tpl->setVar('BA_prenom_B_1', $donnee['prenom']);
 		$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
 		$tpl->setVar('id_boulanger', $donnee['id_boulanger']);
+		
 		
 		$tpl->render('boulanger', $donnee);
 	}
@@ -93,7 +99,7 @@ session_start();
 	$result->execute();
 	$results = $result->fetchAll();
 
-foreach($results as $donnee){
+	foreach($results as $donnee){
 		
 		$tpl->setVar('A_nom_distri', $donnee['place']);
 		
@@ -101,6 +107,7 @@ foreach($results as $donnee){
 		$tpl->setVar('DA_stock_1', $donnee['stock']);
 		$tpl->setVar('DA_marche_1', $donnee['etat']);
 		$tpl->setVar('DA_name_1', $donnee['place']);
+		$tpl->setVar('DA_num_1', $donnee['id_distributeur']);
 		$tpl->setVar('id_distributeur', $donnee['id_distributeur']);
 		
 		$tpl->render('distrib', $donnee);

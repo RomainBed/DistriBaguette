@@ -51,7 +51,6 @@ session_start();
 			$tpl->setVar('DA_name_1', $donnee['place']);
 			$tpl->setVar('DA_loc_1', $donnee['localisation']);
 			$tpl->setVar('DA_stock_1', $donnee['stock']);
-			$tpl->setVar('DA_marche_1', $donnee['etat']);
 			}
 
 		}		
@@ -61,12 +60,13 @@ session_start();
 	  try {
 		  $nameD = stripslashes($_POST['nom_distri']);
 		  $stock = stripslashes($_POST['stock']);
-		  $etat = stripslashes($_POST['etat']);
 		  $localisation = stripslashes($_POST['localisation']);
 		  
-		  $request=("UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock', etat='$etat' WHERE id_distributeur='$id'");		  
-		  $result = $pdo->prepare($request);
-		  $result->execute();
+			// $request=file_get_contents("sql/update_distributeur.txt");
+			$request=("UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock' WHERE id_distributeur='$id';ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");		  
+			// ;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST
+			$result = $pdo->prepare($request);
+			$result->execute();
 
 		  if ( $result ) {	
 			  //redirection vers la page liste si la requête SQL à fonctionnée
