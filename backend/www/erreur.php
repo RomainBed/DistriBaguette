@@ -21,11 +21,6 @@
 	$tpl->setVar('A_footertitle',$A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	$tpl->setVar('SA_monnayeur',$SA_monnayeur);
-	$tpl->setVar('SA_nomDistri',$SA_nomDistri);
-	$tpl->setVar('SA_nombre_bag_achete',$SA_nombre_bag_achete);
-	$tpl->setVar('SA_prix',$SA_prix);
-
 	echo $tpl->render();
 
 ?>
