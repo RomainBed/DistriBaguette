@@ -52,7 +52,6 @@ session_start();
 			$tpl->setVar('BA_prenom_B_1', $donnee['prenom']);
 			$tpl->setVar('BA_mail_B_1', $donnee['adresse_mail']);
 			$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
-			$tpl->setVar('BA_num_B_1', $donnee['id_boulanger']);
 			}
 		}		
 
@@ -70,7 +69,7 @@ session_start();
 		  $result->execute();
 
 		  if ( $result ) {	
-			  header("Location: index_admin.php");
+			  header("Location: liste_distributeur.php");
 			}else{
 				echo "Erreur lors de l'ajout";
 			}
@@ -82,8 +81,6 @@ session_start();
 		}
 	}
 	
-
 	echo $tpl->render();
-	
 
 ?>

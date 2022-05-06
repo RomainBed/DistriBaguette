@@ -12,7 +12,6 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('service.html');

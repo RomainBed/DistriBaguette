@@ -42,7 +42,6 @@ session_start();
 
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
-		
 		$request = file_get_contents("sql/select_id_distributeur.txt");
 		$result = $pdo->prepare($request);
 		$result->execute(array($id));
@@ -64,19 +63,19 @@ session_start();
 		  
 			// $request=file_get_contents("sql/update_distributeur.txt");
 			$request=("UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock' WHERE id_distributeur='$id';ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");		  
-			// ;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST
-			$result = $pdo->prepare($request);
+						$result = $pdo->prepare($request);
 			$result->execute();
 
 		  if ( $result ) {	
 			  //redirection vers la page liste si la requête SQL à fonctionnée
-			  header("Location: index_admin.php");
+			  header("Location: liste_distributeur.php");
 			}else{
 				echo "Erreur lors de l'ajout";
 			}
 		}
 		
-	  catch(Exception	$e){
+	  catch(Exception	$e)
+	  {
 			echo "erreur";
 		}
 	}

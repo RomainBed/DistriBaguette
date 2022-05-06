@@ -16,7 +16,6 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 
 //Affectation du fichier HTML
 	$tpl = new Hyla_Tpl('html');

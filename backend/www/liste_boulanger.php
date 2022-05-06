@@ -11,29 +11,15 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
+	require 'connection.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
 
 // association des variables HTML vers PHP
 
-	$tpl->setVar('AA_admin', $AA_admin);
-	$tpl->setVar('AA_liste', $AA_liste);
-	$tpl->setVar('AA_par', $AA_par);
-	$tpl->setVar('AA_arch', $AA_arch);
-	$tpl->setVar('AA_monna',$AA_monna);
-	
-	// titre
-	$tpl->setVar('AA_titledistri', $AA_titledistri);
-	$tpl->setVar('AA_titleboul', $AA_titleboul);
-	
-	// distri
-	$tpl->setVar('DA_name', $DA_name);
-	$tpl->setVar('DA_stock', $DA_stock);
-	$tpl->setVar('DA_loc', $DA_loc);
-
-	
 	// boulanger
+	$tpl->setVar('BA_num_B', $BA_num_B);
 	$tpl->setVar('BA_name_B', $BA_name_B);
 	$tpl->setVar('BA_mail_B', $BA_mail_B);
 	$tpl->setVar('BA_tel_B', $BA_tel_B);
@@ -55,15 +41,7 @@ session_start();
 		if ( $pdo )
 			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id;ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
 		}
-// suppression d'un id_distributeur	
-	if ( @$_GET['id_distributeur']) {
-		$id = $_GET['id_distributeur'];
-		if ( $pdo )
-			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
-		}
-
-// -- lecture base de données
-
+		
 // Liste de Boulanger
 
 	$request= ("SELECT id_boulanger, nom, prenom, adresse_mail, telephone FROM boulanger");
@@ -74,8 +52,6 @@ session_start();
 	
 	// Boucle tant qu'il y a des données il continue à incrementer
 	foreach($results as $donnee){
-
-		$tpl->setVar('AA_titleboul', $AA_titleboul);
 				
 		$tpl->setVar('BA_num_B_1', $donnee['id_boulanger']);
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);
@@ -86,28 +62,6 @@ session_start();
 		
 		
 		$tpl->render('boulanger', $donnee);
-	}
-//Liste de Distributeur
-
-	$request = ("SELECT id_distributeur, place, localisation, stock, etat FROM distributeur");
-	
-	$result = $pdo->prepare($request);
-	$result->execute();
-	$results = $result->fetchAll();
-
-	foreach($results as $donnee){
-		
-		$tpl->setVar('A_nom_distri', $donnee['place']);
-		
-		$tpl->setVar('DA_loc_1', $donnee['localisation']);
-		$tpl->setVar('DA_stock_1', $donnee['stock']);
-		$tpl->setVar('DA_marche_1', $donnee['etat']);
-		$tpl->setVar('DA_name_1', $donnee['place']);
-		$tpl->setVar('DA_num_1', $donnee['id_distributeur']);
-		$tpl->setVar('id_distributeur', $donnee['id_distributeur']);
-		
-		$tpl->render('distrib', $donnee);
-		
 	}
 
 	echo $tpl->render();

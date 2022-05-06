@@ -14,7 +14,6 @@ Affiche la liste des distributeurs disponnible on retrouve:
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 
 //Affectation du fichier HTML
 	$tpl = new Hyla_Tpl('html');
@@ -51,7 +50,12 @@ Affiche la liste des distributeurs disponnible on retrouve:
 		// $file = file_get_contents("requete.txt");
 		
 		$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
-
+		
+		// -------------------
+		// $dal = new DAL("");
+		// $result = $dal->index_select();
+		
+		// -------------------
 		//traitement de la requete
 		$result = $pdo->prepare($request);
 		
