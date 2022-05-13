@@ -14,7 +14,7 @@ session_start();
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('index_admin.html');
+	$tpl->importFile('liste_boulanger.html');
 
 // association des variables HTML vers PHP
 
