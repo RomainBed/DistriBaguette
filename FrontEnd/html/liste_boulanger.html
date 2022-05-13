@@ -4,10 +4,9 @@
 		<meta charset="utf-8" />
 		<title>{$A_page}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	  	<link rel="stylesheet" href="css/style.css" />
-          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -20,14 +19,14 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">Modif Boulanger</a>
+                    <a href="#" class="brand-logo center">Liste Boulanger</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                     <ul id="dropdown-menu" class="dropdown-content">
-                        <li><a href="pagelistedistri">Liste Distri</a></li>
-                        <li><a href="pagelisteboulange">Liste Boulanger</a></li>
+                        <li><a href="liste_distributeur.php">Liste Distributeur</a></li>
+                        <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
                         <li><a href="stats.php">Statistiques</a></li>
                         <li class="divider"></li>
                         <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
@@ -38,42 +37,43 @@
 
         <!-- Menu Mobile -->
         <ul id="mobile-navbar" class="sidenav">
-            <li><a href="pagelistedistri">Liste Distri</a></li>
-            <li><a href="pagelisteboulange">Liste Boulanger</a></li>
+            <li><a href="liste_distributeur.php">Liste Distri</a></li>
+            <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
             <li><a href="stats.php">Statistiques</a></li>
             <li class="divider"></li>
             <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
         </ul>
         
-        <div ng-app="FireCart" ng-controller="AuthController">
-            <div class="row center">
-                <div class="col s12 m10 offset-m1 l6 offset-l3">
-                    <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form method="POST">
-                            <div class="card-content">
-                                <div class="row center-align">
-                                    <span class="card-title grey-text text-darken-4 center-align">{$S_BoulangerModif}</span>
-                                    <div class="input-field col s6">
-                                        <input value="{$BA_name_B_1}" placeholder="Nom" type="text" name="nom_boulanger" required>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input value="{$BA_prenom_B_1}" placeholder="Prenom" type="text" name="prenom" required>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <input value="{$BA_mail_B_1}" type="text" placeholder="Mail" name="mail" required>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input value="{$BA_tel_B_1}" type="text" placeholder="Numéro de téléphone" name="téléphone" required>
-                                    </div>
-                                </div>
-                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- bouton flottant -->	
+            <main id="sresp">
+                <form method="GET" action="index_admin.php">
+                    <section id="s1"> 
+                        <h4 id="sh4">{$AA_titleboul}</h4>
+                            <table class="centered">
+                                <thead>
+                                    <tr>
+                                        <th>{$BA_num_B}</th>
+                                        <th>{$BA_name_B}</th>
+                                        <th>{$BA_mail_B}</th>
+                                        <th>{$BA_tel_B}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- BEGIN boulanger -->
+                                <tr>
+                                    <td>{$BA_num_B_1}</td>
+                                    <td>{$BA_name_B_1} {$BA_prenom_B_1}</td>
+                                    <td>{$BA_mail_B_1}</td>
+                                    <td>{$BA_tel_B_1}</td>
+                                    <td><a type="submit" href="modif_boulanger.php?id_boulanger={$id_boulanger}" class="btn-floating grey darken-3"><i class="material-icons">mode_edit</i></a></td>
+                                    <td><button type="submit" value="{$id_boulanger}" name="id_boulanger" class="btn-floating grey darken-3"><i class="material-icons">delete</i></button></td>
+                                </tr>
+                                <!-- END boulanger -->
+                                </tbody>
+                            </table> 
+                    </section>
+                </form>
+            </main>
+		<!-- bouton flottant -->	
 		<div class="fixed-action-btn vertical">
 			<a class="btn-floating btn-large red">
 				<i class="large material-icons">mode_edit</i>
@@ -107,8 +107,7 @@
             </div>
         </footer>
     </body>
-</html>        
-
+</html>
 <script>
     // Navbar
     const elemsDropdown = document.querySelectorAll(".dropdown-trigger");
