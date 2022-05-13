@@ -12,9 +12,12 @@ session_start();
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
 	require 'connection.php';
+	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
+
+	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	
@@ -33,24 +36,18 @@ session_start();
 	
 
 //BDD connexion au Site
-	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
+	$dal($_SESSION['username'], $_SESSION['password']);
 	
 // suppression d'un id_distributeur	
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
-		if ( $pdo )
-			$pdo->query("DELETE FROM distributeur WHERE id_distributeur = $id;ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
-		}
+		$dal->suppr_distributeur;
 
 //Liste de Distributeur
 
-	$request = ("SELECT id_distributeur, place, localisation, stock, etat FROM distributeur");
+	$dal->liste_distributeur;
 
-	$result = $pdo->prepare($request);
-	$result->execute();
-	$results = $result->fetchAll();
-
-	foreach($results as $donnee){
+	foreach($dal as $donnee){
 		
 		$tpl->setVar('A_nom_distri', $donnee['place']);
 		

@@ -16,10 +16,13 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-
-//Affectation du fichier HTML
+	require 'connection.php';
+	require 'DAL_class.php';
+	
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('ajout_boulanger.html');
+	$tpl->importFile('index_admin.html');
+
+	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -48,12 +51,9 @@ session_start();
 
 	  try {
 		  // $result = $pdo->prepare($file->$param_boulanger);
-			$request=("ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO boulanger (nom, prenom, adresse_mail, telephone) VALUES('$nameB', '$user', '$email', '$telephone')");		  
-			$result = $pdo->prepare($request);
-			$result->execute();
+		  $dal->ajout_boulanger;
 		  
-
-		  if ( $result ) {	
+		  if ( $dal ) {	
 			  header("Location: index_admin.php");
 			}else{
 				echo "Erreur lors de l'ajout";

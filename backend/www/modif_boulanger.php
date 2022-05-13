@@ -17,10 +17,12 @@ session_start();
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
 	require 'connection.php';
-
-//Affectation du fichier HTML
+	require 'DAL_class.php';
+	
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('modifboulanger.html');
+	$tpl->importFile('index_admin.html');
+
+	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -43,9 +45,7 @@ session_start();
 
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
-		$request = file_get_contents("sql/select_id_boulanger.txt");
-		$result = $pdo->prepare($request);
-		$result->execute(array($id));
+		$dal->select_id_boulanger;
 		
 		foreach ( $result->fetchAll() as $donnee ) {
 			$tpl->setVar('BA_name_B_1', $donnee['nom']);
@@ -64,10 +64,9 @@ session_start();
 	$numero = stripslashes($_POST['numero']);
 
 	  try {
-		  $request=("UPDATE boulanger SET nom='$nameB', prenom='$user', adresse_mail='$email', telephone='$telephone', id_boulanger='$numero' WHERE id_boulanger='$id'");		  
-		  $result = $pdo->prepare($request);
-		  $result->execute();
-
+		  
+		  $dal->modif_boulanger;
+		
 		  if ( $result ) {	
 			  header("Location: liste_distributeur.php");
 			}else{

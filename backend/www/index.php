@@ -14,10 +14,13 @@ Affiche la liste des distributeurs disponnible on retrouve:
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
+	require 'DAL_class.php';
 
 //Affectation du fichier HTML
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index.html');
+	
+	$dal = new DAL('DAL_class');
 	
 //---------------------------------------------------------------------------
 //Connexion à la base de données comme client
@@ -46,32 +49,15 @@ Affiche la liste des distributeurs disponnible on retrouve:
 		
 		$tpl->setVar('A_desc', $A_desc);
 
-		
-		// $file = file_get_contents("requete.txt");
-		
-		$request=("SELECT D.place, D.localisation, D.stock, D.etat, B.nom FROM distributeur D, boulanger B WHERE B.id_boulanger = D.id_distributeur");
-		
-		// -------------------
-		// $dal = new DAL("");
-		// $result = $dal->index_select();
-		
-		// -------------------
-		//traitement de la requete
-		$result = $pdo->prepare($request);
-		
-		// $result = $pdo->prepare($file->$index_admin);
-
-		$result->execute();
-		//afficher le résultat en forme de tableau
-		$results = $result->fetchAll();
-		
+		$dal->affiche_client();
+			
 
 	// Set du ID 
 		$id = 0;
 		
 	// Boucle tant qu'il y a des données il continue à incrementer
 
-		foreach($results as $donnee)
+		foreach($dal as $donnee)
 		{			
 								
 			$tpl->setVar('id',$id);

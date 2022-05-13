@@ -12,10 +12,12 @@ session_start();
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
 	require 'connection.php';
+	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
 
+	$dal = new DAL('DAL_class');
 // association des variables HTML vers PHP
 
 	// boulanger
@@ -33,25 +35,20 @@ session_start();
 	
 
 //BDD connexion au Site
-	$pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $_SESSION['username'], $_SESSION['password']);
+	$dal = ($_SESSION['username'], $_SESSION['password']);
 	
 // suppression d'un id_boulanger
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
-		if ( $pdo )
-			$pdo->query("DELETE FROM boulanger WHERE id_boulanger = $id;ALTER TABLE boulanger DROP id_boulanger;ALTER TABLE boulanger ADD COLUMN id_boulanger int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");
-		}
+		$dal->suppr_boulanger;
+	}
 		
 // Liste de Boulanger
 
-	$request= ("SELECT id_boulanger, nom, prenom, adresse_mail, telephone FROM boulanger");
-
-	$result = $pdo->prepare($request);
-	$result->execute();
-	$results = $result->fetchAll();
+	$dal->liste_boulanger;
 	
 	// Boucle tant qu'il y a des données il continue à incrementer
-	foreach($results as $donnee){
+	foreach($dal as $donnee){
 				
 		$tpl->setVar('BA_num_B_1', $donnee['id_boulanger']);
 		$tpl->setVar('BA_tel_B_1', $donnee['telephone']);

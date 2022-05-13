@@ -16,10 +16,13 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-
-//Affectation du fichier HTML
+	require 'connection.php';
+	require 'DAL_class.php';
+	
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('ajout_distri.html');
+	$tpl->importFile('index_admin.html');
+
+	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -47,9 +50,7 @@ session_start();
 
 	  try {
 		  // $result2 = $pdo->prepare($file->$param_distributeur);
-		  $request=("ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;INSERT INTO distributeur (place, localisation, stock) VALUES('$nameD', '$localisation', '$stock')");		  
-		  $result = $pdo->prepare($request);
-		  $result->execute();
+		  $dal->ajout_distributeur;
 
 		  if ( $result ) {	
 			  //redirection vers la page liste si la requête SQL à fonctionnée

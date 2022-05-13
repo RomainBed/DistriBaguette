@@ -17,10 +17,12 @@ session_start();
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
 	require 'connection.php';
-
-//Affectation du fichier HTML
+	require 'DAL_class.php';
+	
 	$tpl = new Hyla_Tpl('html');
-	$tpl->importFile('modifdistri.html');
+	$tpl->importFile('index_admin.html');
+
+	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -42,16 +44,13 @@ session_start();
 
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
-		$request = file_get_contents("sql/select_id_distributeur.txt");
-		$result = $pdo->prepare($request);
-		$result->execute(array($id));
+		$dal->select_id_distributeur;
 		
-		foreach ( $result->fetchAll() as $donnee ) {
+		foreach ( $dal->fetchAll() as $donnee ) {
 			$tpl->setVar('DA_name_1', $donnee['place']);
 			$tpl->setVar('DA_loc_1', $donnee['localisation']);
 			$tpl->setVar('DA_stock_1', $donnee['stock']);
 			}
-
 		}		
 		
 	if ( @$_POST['submit'] == "Envoyer" ){
@@ -62,11 +61,10 @@ session_start();
 		  $localisation = stripslashes($_POST['localisation']);
 		  
 			// $request=file_get_contents("sql/update_distributeur.txt");
-			$request=("UPDATE distributeur SET place='$nameD', localisation='$localisation', stock='$stock' WHERE id_distributeur='$id';ALTER TABLE distributeur DROP id_distributeur;ALTER TABLE distributeur ADD COLUMN id_distributeur int(100) NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST");		  
-						$result = $pdo->prepare($request);
-			$result->execute();
+			
+		  $dal->modif_distributeur;
 
-		  if ( $result ) {	
+		  if ( $dal ) {	
 			  //redirection vers la page liste si la requête SQL à fonctionnée
 			  header("Location: liste_distributeur.php");
 			}else{
