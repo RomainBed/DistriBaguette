@@ -4,7 +4,7 @@
 
 Affiche deux cadres où l'on peut ajouter un boulanger dans la bdd
 
-	Conditions d'ajout pour le boulanger:
+	Conditions de modification pour le boulanger, prérequis:
 		- Nom
 		- Prénom
 		- Numéro de téléphone
@@ -16,13 +16,10 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
-
-	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -30,22 +27,16 @@ session_start();
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page concernée
-	$tpl->setVar('S_admin',$S_admin);
-	$tpl->setVar('S_connect',$S_connect);
-	
-	//Onglets 
-	$tpl->setVar('AA_par',$AA_par);
-	$tpl->setVar('S_admin',$S_admin);
-	
 	$tpl->setVar('S_BoulangerModif',$S_BoulangerModif);
+
+	//BDD connexion au Site
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
 	
 // Ajouter un boulanger avec le bouton "Envoyer"
 
-
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
-		$dal->select_id_boulanger;
+		$dal->select_id_boulanger();
 		
 		foreach ( $result->fetchAll() as $donnee ) {
 			$tpl->setVar('BA_name_B_1', $donnee['nom']);
@@ -65,7 +56,7 @@ session_start();
 
 	  try {
 		  
-		  $dal->modif_boulanger;
+		  $dal->modif_boulanger($id_boulanger, $nameB, $user, $email, $telephone, $numero);
 		
 		  if ( $result ) {	
 			  header("Location: liste_distributeur.php");

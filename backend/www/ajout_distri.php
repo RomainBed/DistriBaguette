@@ -4,7 +4,7 @@
 
 Affiche deux cadres où l'on peut ajouter un distributeur dans la bdd
 		
-	Conditions d'ajout pour le distributeur:
+	Conditions d'ajout pour le distributeur, prérequis:
 		- Nom
 		- Localisation
 		- Stock
@@ -16,13 +16,11 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
 
-	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -30,15 +28,10 @@ session_start();
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page concernée
-	$tpl->setVar('S_admin',$S_admin);
-	$tpl->setVar('S_connect',$S_connect);
-	
-	//Onglets 
-	$tpl->setVar('AA_par',$AA_par);
-	$tpl->setVar('S_admin',$S_admin);
-	
 	$tpl->setVar('S_Distributeur',$S_Distributeur);
+	
+	//BDD connexion au Site
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
 	
 // Ajouter un distributeur avec le bouton "Envoyer"
 
@@ -48,22 +41,23 @@ session_start();
 	$stock = stripslashes($_POST['stock']);
 	$localisation = stripslashes($_POST['localisation']);
 
-	  try {
-		  // $result2 = $pdo->prepare($file->$param_distributeur);
-		  $dal->ajout_distributeur;
+		  try {
+			  $dal->ajout_distributeur($id_dsitributeur, $stock, $localisation, $nameD);
 
-		  if ( $result ) {	
-			  //redirection vers la page liste si la requête SQL à fonctionnée
-			  header("Location: index_admin.php");
-			}else{
-				echo "Erreur lors de l'ajout";
+			  if ( $dal ) {	
+			  
+	//redirection vers la page liste si la requête SQL à fonctionnée
+	
+				  header("Location: index_admin.php");
+				}else{
+					echo "Erreur lors de l'ajout";
+				}
 			}
+			
+		catch(Exception	$e)
+		{
+			echo "erreur";
 		}
-		
-	catch(Exception	$e)
-	{
-		echo "erreur";
-	}
 	}
 
 	echo $tpl->render();

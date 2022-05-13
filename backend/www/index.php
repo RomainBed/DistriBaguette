@@ -19,22 +19,9 @@ Affiche la liste des distributeurs disponnible on retrouve:
 //Affectation du fichier HTML
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index.html');
+
+	$dal = new DAL(distribaguette, client, client);
 	
-	$dal = new DAL('DAL_class');
-	
-//---------------------------------------------------------------------------
-//Connexion à la base de données comme client
-
-	try{		
-		$pdo = new PDO('mysql:host=172.20.233.109;dbname=distribaguette;','client','client');
-	}
-	catch(Exception	$e)
-	{
-		echo "erreur";
-	}
-
-//---------------------------------------------------------------------------
-
 // association des variables HTML vers PHP
 
 		$tpl->setVar('A_page', $A_page);

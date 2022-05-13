@@ -2,7 +2,7 @@
 /* INFORMATIONS DE LA PAGE
 => PAGE ADMIN LISTE
 
-Affiche deux tableaux où l'on peut voir et supprimer un boulanger ou un distributeurs
+Affiche deux tableaux où l'on peut voir,modifier et supprimer un/des distributeur/s
 
 */
 
@@ -11,13 +11,10 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
-
-	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	
@@ -36,12 +33,13 @@ session_start();
 	
 
 //BDD connexion au Site
-	$dal($_SESSION['username'], $_SESSION['password']);
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
 	
 // suppression d'un id_distributeur	
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
 		$dal->suppr_distributeur;
+	}
 
 //Liste de Distributeur
 

@@ -2,9 +2,9 @@
 /* INFORMATIONS DE LA PAGE
 => PAGE ADMIN PARAMETRAGE
 
-Affiche deux cadres où l'on peut ajouter un distributeur dans la bdd
+Affiche un cadre où l'on peut modifier un distributeur dans la bdd
 		
-	Conditions d'ajout pour le distributeur:
+	Conditions de modification pour le distributeur, prérequis:
 		- Nom
 		- Localisation
 		- Stock
@@ -16,13 +16,10 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
-
-	$dal = new DAL('DAL_class');
 
 // association des variables HTML vers PHP
 	//Titres principaux
@@ -30,21 +27,16 @@ session_start();
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page concernée
-	$tpl->setVar('S_admin',$S_admin);
-	$tpl->setVar('S_connect',$S_connect);
-	
-	//Onglets 
-	$tpl->setVar('AA_par',$AA_par);
-	$tpl->setVar('S_admin',$S_admin);
-	
 	$tpl->setVar('S_DistributeurModif',$S_DistributeurModif);
+	
+	//BDD connexion au Site
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
 	
 // Ajouter un distributeur avec le bouton "Envoyer"
 
 	if ( @$_GET['id_distributeur']) {
 		$id = $_GET['id_distributeur'];
-		$dal->select_id_distributeur;
+		$dal->select_id_distributeur();
 		
 		foreach ( $dal->fetchAll() as $donnee ) {
 			$tpl->setVar('DA_name_1', $donnee['place']);
@@ -62,7 +54,7 @@ session_start();
 		  
 			// $request=file_get_contents("sql/update_distributeur.txt");
 			
-		  $dal->modif_distributeur;
+		  $dal->modif_distributeur($id_distributeur, $nameD, $localisation, $stock);
 
 		  if ( $dal ) {	
 			  //redirection vers la page liste si la requête SQL à fonctionnée

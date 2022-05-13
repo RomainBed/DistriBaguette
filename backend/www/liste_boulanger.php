@@ -2,7 +2,7 @@
 /* INFORMATIONS DE LA PAGE
 => PAGE ADMIN LISTE
 
-Affiche deux tableaux où l'on peut voir et supprimer un boulanger ou un distributeurs
+Affiche deux tableaux où l'on peut voir,modifier et supprimer un/des boulanger/s
 
 */
 
@@ -11,13 +11,11 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
 	$tpl->importFile('index_admin.html');
 
-	$dal = new DAL('DAL_class');
 // association des variables HTML vers PHP
 
 	// boulanger
@@ -35,17 +33,17 @@ session_start();
 	
 
 //BDD connexion au Site
-	$dal = ($_SESSION['username'], $_SESSION['password']);
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
 	
 // suppression d'un id_boulanger
 	if ( @$_GET['id_boulanger']) {
 		$id = $_GET['id_boulanger'];
-		$dal->suppr_boulanger;
+		$dal->suppr_boulanger($id_boulanger);
 	}
 		
 // Liste de Boulanger
 
-	$dal->liste_boulanger;
+	$dal->liste_boulanger();
 	
 	// Boucle tant qu'il y a des données il continue à incrementer
 	foreach($dal as $donnee){

@@ -4,7 +4,7 @@
 
 Affiche deux cadres où l'on peut ajouter un boulanger dans la bdd
 
-	Conditions d'ajout pour le boulanger:
+	Conditions d'ajout pour le boulanger, prérequis:
 		- Nom
 		- Prénom
 		- Numéro de téléphone
@@ -16,7 +16,6 @@ session_start();
 
 	require 'lib/hyla_tpl.class.php';
 	require 'php/msgfr.php';
-	require 'connection.php';
 	require 'DAL_class.php';
 	
 	$tpl = new Hyla_Tpl('html');
@@ -30,16 +29,11 @@ session_start();
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page concernée
-	$tpl->setVar('S_admin',$S_admin);
-	$tpl->setVar('S_connect',$S_connect);
-	
-	//Onglets 
-	$tpl->setVar('AA_par',$AA_par);
-	$tpl->setVar('S_admin',$S_admin);
-	
 	$tpl->setVar('S_Boulanger',$S_Boulanger);
 	
+	//BDD connexion au Site
+	$dal = new DAL($_SESSION['username'], $_SESSION['password']);
+		
 // Ajouter un boulanger avec le bouton "Envoyer"
 
 	if ( @$_POST['submit'] == "Envoyer" ){
@@ -51,7 +45,7 @@ session_start();
 
 	  try {
 		  // $result = $pdo->prepare($file->$param_boulanger);
-		  $dal->ajout_boulanger;
+		  $dal->ajout_boulanger($id_boulanger, $nameB, $user, $email, $telephone);
 		  
 		  if ( $dal ) {	
 			  header("Location: index_admin.php");

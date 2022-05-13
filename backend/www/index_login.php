@@ -22,30 +22,26 @@ session_start();
 	$tpl->setVar('A_footertitle', $A_footertitle);
 	$tpl->setVar('A_projet',$A_projet);
 	
-	//Titre pour la page
-	$tpl->setVar('S_admin',$S_admin);
-	$tpl->setVar('S_connect',$S_connect);
-	
 	if ( @$_POST['submit'] == "Login" ){
 		
 	  $username = stripslashes($_POST['username']);	  
 	  $password = stripslashes($_POST['password']);
 	  
 	  //Connexion à la base de données comme admin
-	  try {
-		  $pdo = new PDO("mysql:host=172.20.233.109;dbname=distribaguette", $username, $password);
+		  try {
+			  $dal = new DAL($dbname, $username, $password);
 
-		  if ( $pdo ) {
-			   $_SESSION['username'] = $username;
-			   $_SESSION['password'] = $password;
+			  if ( $pdo ) {
+				   $_SESSION['username'] = $username;
+				   $_SESSION['password'] = $password;
 
-			  header("Location: index_admin.php");
+				  header("Location: liste_boulanger.php");
+				}
 			}
+		catch(Exception	$e)
+		{
+			header("Location: erreur.php");
 		}
-	catch(Exception	$e)
-	{
-		header("Location: erreur.php");
-	}
 	}
 	echo $tpl->render();
 ?>
