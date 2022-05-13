@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$A_page}</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	  	<link rel="stylesheet" href="css/style.css" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="../js/main.js"></script> 
+	</head>
+    <body>
+        <div id="bandeau">
+            <img src="../image/Logo2.PNG" id="image">
+        </div>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper yellow accent-4">
+                    <a href="#" class="brand-logo center">Ajout Distri</a>
+                    <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul id="navbar-items" class="left hide-on-med-and-down">
+                        <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
+                    <ul id="dropdown-menu" class="dropdown-content">
+                        <li><a href="pagelistedistri">Liste Distri</a></li>
+                        <li><a href="pagelisteboulange">Liste Boulanger</a></li>
+                        <li><a href="pagestats">Statistiques</a></li>
+                        <li class="divider"></li>
+                        <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Menu Mobile -->
+        <ul id="mobile-navbar" class="sidenav">
+            <li><a href="pagelistedistri">Liste Distri</a></li>
+            <li><a href="pagelisteboulange">Liste Boulanger</a></li>
+            <li><a href="pagestats">Statistiques</a></li>
+            <li class="divider"></li>
+            <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
+        </ul>
+        <div ng-app="FireCart" ng-controller="AuthController">
+            <div class="row center">
+                <div class="col s12 m10 offset-m1 l6 offset-l3">
+                    <div class="card sticky-action z-depth-4 card-panel hoverable">
+                        <form method="POST">
+                            <div class="card-content">
+                                <div class="row center-align">
+                                    <span class="card-title grey-text text-darken-4 center-align">{$S_Distributeur}</span>
+                                    <div class="input-field col s12">
+                                        <input type="text" value="{$DA_name_1}" placeholder="Nom" name="nom_distri" required>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input type="text" value="{$DA_loc_1}" placeholder="Localisation" name="localisation" required>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="text" value="{$DA_stock_1}" placeholder="Stock" name="stock" required>
+                                    </div>
+                                </div>
+                                <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- bouton flottant -->	
+		<div class="fixed-action-btn vertical">
+			<a class="btn-floating btn-large red">
+				<i class="large material-icons">mode_edit</i>
+			</a>
+			<ul>
+				<li>
+					<a href="ajout_distri.php" class="btn-floating bleue lighten-1">
+						<i class="material-icons">bakery_dining</i>
+					</a>
+				</li>
+				<li>
+					<a href="ajout_boulanger.php" class="btn-floating bleue lighten-1">
+						<i class="material-icons">account_circle</i>
+					</a>
+				</li>
+			</ul>
+		</div>	
+        <footer class="page-footer" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="yellow-text">{$A_footertitle}</h5>     
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h6 class="yellow-text">{$A_projet}</h6>
+                        <ul>
+                            <li><p class="grey-text text-lighten-9">Romain / Florian / Anthony / Younes</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+<script>
+    // Navbar
+    const elemsDropdown = document.querySelectorAll(".dropdown-trigger");
+    const instancesDropdown = M.Dropdown.init(elemsDropdown, {
+        coverTrigger: false
+    });
+    const elemsSidenav = document.querySelectorAll(".sidenav");
+    const instancesSidenav = M.Sidenav.init(elemsSidenav, {
+        edge: "left"
+    });
+</script>
