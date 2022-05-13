@@ -10,16 +10,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="../js/main.js"></script> 
+        <script src="./js/main.js"></script> 
 	</head>
     <body>
         <div id="bandeau">
             <img src="../image/Logo2.PNG" id="image">
         </div>
-        <div class="navbar-fixed">
+        <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">Liste Boulanger</a>
+                    <a href="#" class="brand-logo center">Statistiques</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
@@ -45,40 +45,40 @@
         </ul>
             <section id="sresp">
                 <section id="s1"> 
-                    <h4 class="center">{$SA_stat_distri}</h4>
+                    <h4 class="center">Boulanger</h4>
                     <table class="centered">
                         <thead>
                             <tr>
-                                <th>{$SA_nomDistri}</th>
-                                <th>{$SA_vente}</th>
-                                <th>{$SA_date}</th>
+                                <th>Nom</th>
+                                <th>Jour</th>
+                                <th>Semaine</th>
+                                <th>Mois</th>
                             </tr>
                         </thead>
                         <tbody>
                         <!-- BEGIN distrib -->
                         <tr>
-                            <td>{$SA_nomDistri_1}</td>
-                            <td>{$SA_vente_1}</td>
-                            <td>{$SA_date_1}</td>
+                            <td>{$BA_name_B}</td>
+                            <td>{$Stat_jour}</td>
+                            <td>{$Stat_semaine}</td>
+                            <td>{$Stat_mois}</td>
                         </tr>
                         <!-- END distrib -->
                         </tbody>
                     </table> 
-                    <h4 class="center">{$SA_monnayeur}</h4>
+                    <h4 class="center">Distributeur</h4>
                     <table class="centered"> 
                         <thead>
                             <tr>
-                                <th>{$SA_nomDistri}</th>
-                                <th>{$SA_nombre_bag_achete}</th>
-                                <th>{$SA_prix}</th>
+                                <th>Nom</th>
+                                <th>Jour</th>
                             </tr>
                         </thead>
                         <tbody>
                         <!-- BEGIN distrib -->
                         <tr>
-                            <td>{$SA_nomDistri_1}</td>
-                            <td>{$SA_vente_1}</td>
-                            <td>{$SA_total_1}</td>
+                            <td>{$DA_name}</td>
+                            <td>{Stat_Distri_jour}</td>
                         </tr>
                         <!-- END distrib -->
                         </tbody>
@@ -120,14 +120,4 @@
         </footer>
     </body>
 </html>
-<script>
-    // Navbar
-    const elemsDropdown = document.querySelectorAll(".dropdown-trigger");
-    const instancesDropdown = M.Dropdown.init(elemsDropdown, {
-        coverTrigger: false
-    });
-    const elemsSidenav = document.querySelectorAll(".sidenav");
-    const instancesSidenav = M.Sidenav.init(elemsSidenav, {
-        edge: "left"
-    });
-</script>
+

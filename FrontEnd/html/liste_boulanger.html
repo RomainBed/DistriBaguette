@@ -10,13 +10,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="../js/main.js"></script> 
+        <script src="./js/main.js"></script> 
 	</head>
     <body>
         <div id="bandeau">
             <img src="../image/Logo2.PNG" id="image">
         </div>
-        <div class="navbar-fixed">
+        <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
                     <a href="#" class="brand-logo center">Liste Boulanger</a>
@@ -63,7 +63,7 @@
                                     <td>{$BA_num_B_1}</td>
                                     <td>{$BA_name_B_1} {$BA_prenom_B_1}</td>
                                     <td>{$BA_mail_B_1}</td>
-                                    <td>{$BA_tel_B_1}</td>
+                                    <td>0{$BA_tel_B_1}</td>
                                     <td><a type="submit" href="modif_boulanger.php?id_boulanger={$id_boulanger}" class="btn-floating grey darken-3"><i class="material-icons">mode_edit</i></a></td>
                                     <td><button type="submit" value="{$id_boulanger}" name="id_boulanger" class="btn-floating grey darken-3"><i class="material-icons">delete</i></button></td>
                                 </tr>
@@ -108,14 +108,3 @@
         </footer>
     </body>
 </html>
-<script>
-    // Navbar
-    const elemsDropdown = document.querySelectorAll(".dropdown-trigger");
-    const instancesDropdown = M.Dropdown.init(elemsDropdown, {
-        coverTrigger: false
-    });
-    const elemsSidenav = document.querySelectorAll(".sidenav");
-    const instancesSidenav = M.Sidenav.init(elemsSidenav, {
-        edge: "left"
-    });
-</script>
