@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<head><!--Ajout de la bibliothèques Materialize-->
 		<meta charset="utf-8" />
 		<title>{$A_page}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	  	<link rel="stylesheet" href="css/style.css" />
           <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--Mise en page mobile-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="./js/main.js"></script> 
@@ -17,15 +17,17 @@
         <div id="bandeau">
             <img src="../image/Logo2.PNG" id="image">
         </div>
+        <!--Menu Navbar PC-->
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
                     <a href="#" class="brand-logo center">{$M_listeB}</a>
-                    <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a> <!--Menu déroulant-->
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
-                    <ul id="dropdown-menu" class="dropdown-content">
+                    <!--Contenu du menu déroulant-->
+                    <ul id="dropdown-menu" class="dropdown-content"> 
                         <li><a href="liste_distributeur.php">{$M_listeD}</a></li>
                         <li><a href="liste_boulanger.php">{$M_listeB}</a></li>
                         <li><a href="stats.php">{$M_stat}</a></li>
@@ -47,9 +49,9 @@
         
         <div ng-app="FireCart" ng-controller="AuthController">
             <div class="row center">
-                <div class="col s12 m10 offset-m1 l6 offset-l3">
+                <div class="col s12 m10 offset-m1 l6 offset-l3"> <!--Cadre-->
                     <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form method="POST">
+                        <form method="POST"> <!--Rempli les informations-->
                             <div class="card-content">
                                 <div class="row center-align">
                                     <span class="card-title grey-text text-darken-4 center-align">{$S_modif}</span>
@@ -91,6 +93,7 @@
 				</li>
 			</ul>
 		</div>	
+        <!--Footer-->
         <footer class="page-footer" id="footer">
             <div class="container">
                 <div class="row">

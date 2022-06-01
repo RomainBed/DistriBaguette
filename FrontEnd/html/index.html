@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<head> <!--Ajout de la bibliothèques Materialize-->
 		<meta charset="utf-8" />
 		<title>{$A_page}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-	  	<link rel="stylesheet" href="css/style.css" />
+	  	<link rel="stylesheet" href="css/style.css" /> 
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--Mise en page mobile-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script src="./js/main.js"></script>
 	</head>
     <body>
         <div id="bandeau">
             <img src="../image/Logo2.PNG" id="image">
         </div>
-        <div id="boucle">
+        <div id="boucle"> <!--Création de la boucle pour afficher les distributeurs-->
             <h4 class="center">{$A_title}</h4>
-            <!-- BEGIN distrib -->
+            <!-- BEGIN distrib --> <!--BEGIN permet de lancement du programme PHP-->
             <div class="container">
                 <div class="collection">
                     <a href="#terms{$id}" class="collection-item center">
                         <span class="black-text text-darken-2">{$A_nom_distri}</span>
                     </a>
-                    <div class="modal" id="terms{$id}">
+                    <!--Contenu dans le distributeur-->
+                    <div class="modal" id="terms{$id}"> <!--Animation voir script-->
                         <div class="modal-content">
                             <h4 class="yellow-text">{$A_desc}</h4>      
                             <div class="row">
                                 <div class="col s12">
-                                    <table class="centered highlight">
+                                    <table class="centered highlight"> <!--Tableau-->
                                         <thread>
                                             <tr>
                                                 <th>{$D_boulanger}</th>
@@ -43,12 +45,14 @@
                                     </table>  
                                 </div> 
                             </div>
+                            <!--Affichage de la map-->
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21576.23421315273!2d-0.5694270185741821!3d47.469858927245596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480878bd247c97bd%3A0x1cdc2386c7048a01!2sBoulangerie%20D%20%26%20N%20COLLOT!5e0!3m2!1sfr!2sfr!4v1648726355472!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div> 
             </div>
             <!-- END distrib -->
+            <!--Footer-->
             <footer class="page-footer" id="footer">
                 <div class="container">
                     <div class="row">
@@ -64,11 +68,6 @@
                     </div>
                 </div>
             </footer>
-            <script>
-                $(document).ready(function(){
-                    $('.modal').modal();
-                });
-            </script>
         </div>
     </body>
     </html>

@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<head><!--Ajout de la bibliothèques Materialize-->
 		<meta charset="utf-8" />
 		<title>{$A_page}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 	  	<link rel="stylesheet" href="css/style.css" />
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--Mise en page mobile-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 	</head>
     <body>
         <div id="bandeau">
             <img src="../image/Logo2.PNG" id="image">
         </div>
-        <div ng-app="FireCart" ng-controller="AuthController">
+        <!--Création du formulaire d'authentification-->
+        <div ng-app="FireCart" ng-controller="AuthController"> <!--Frome du formulaire-->
             <div class="row center">
-                <div class="col s12 m10 offset-m1 l6 offset-l3">
+                <div class="col s12 m10 offset-m1 l6 offset-l3"><!--Cadre-->
                     <div class="card sticky-action z-depth-4 card-panel hoverable">
-                        <form method="POST">
+                        <form method="POST"> <!--Ecrit les paramètres URL dans la requete pour le serveur-->
                             <div class="card-content">
                                 <div class="row center-align">
                                     <span class="card-title grey-text text-darken-4 center-align">{$S_connect}</span>
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12"> <!--Colonne Identifiant-->
                                         <input type="text" ng-model="dummyInputs.inputFieldInput" placeholder="Identifiant" name="username" required>
                                     </div>
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12"> <!--Colonne mdp-->
                                         <input type="password" ng-model="dummyInputs.inputFieldInput" placeholder="MDP" name="password" required>
                                     </div>
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn" value="Login" name="submit"></input>
+                                <input type="submit" class="waves-effect waves-light btn" value="Login" name="submit"></input> <!--Bouton login-->
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!--Footer-->
         <footer class="page-footer" id="footer">
             <div class="container">
                 <div class="row">
