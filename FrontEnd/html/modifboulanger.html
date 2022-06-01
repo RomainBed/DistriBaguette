@@ -20,15 +20,15 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">{$S_BoulangerModif}</a>
+                    <a href="#" class="brand-logo center">{$M_listeB}</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="navbar-items" class="left hide-on-med-and-down">
-                        <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                     <ul id="dropdown-menu" class="dropdown-content">
-                        <li><a href="liste_distributeur.php">Liste Distri</a></li>
-                        <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
-                        <li><a href="stats.php">Statistiques</a></li>
+                        <li><a href="liste_distributeur.php">{$M_listeD}</a></li>
+                        <li><a href="liste_boulanger.php">{$M_listeB}</a></li>
+                        <li><a href="stats.php">{$M_stat}</a></li>
                         <li class="divider"></li>
                         <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
                     </ul>
@@ -38,9 +38,9 @@
 
         <!-- Menu Mobile -->
         <ul id="mobile-navbar" class="sidenav">
-            <li><a href="liste_distributeur.php">Liste Distri</a></li>
-            <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
-            <li><a href="stats.php">Statistiques</a></li>
+            <li><a href="liste_distributeur.php">{$M_listeD}</a></li>
+            <li><a href="liste_boulanger.php">{$M_listeB}</a></li>
+            <li><a href="stats.php">{$M_stat}</a></li>
             <li class="divider"></li>
             <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
         </ul>
@@ -52,7 +52,7 @@
                         <form method="POST">
                             <div class="card-content">
                                 <div class="row center-align">
-                                    <span class="card-title grey-text text-darken-4 center-align">Modifier</span>
+                                    <span class="card-title grey-text text-darken-4 center-align">{$S_modif}</span>
                                     <div class="input-field col s6">
                                         <input value="{$BA_name_B_1}" placeholder="Nom" type="text" name="nom_boulanger" required>
                                     </div>

@@ -19,15 +19,15 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">Statistiques</a>
+                    <a href="#" class="brand-logo center">{$M_listeB}</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="navbar-items" class="left hide-on-med-and-down">
-                        <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#"> Menu <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                     <ul id="dropdown-menu" class="dropdown-content">
-                        <li><a href="liste_distributeur.php">Liste Distributeur</a></li>
-                        <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
-                        <li><a href="stats.php">Statistiques</a></li>
+                        <li><a href="liste_distributeur.php">{$M_listeD}</a></li>
+                        <li><a href="liste_boulanger.php">{$M_listeB}</a></li>
+                        <li><a href="stats.php">{$M_stat}</a></li>
                         <li class="divider"></li>
                         <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
                     </ul>
@@ -37,22 +37,22 @@
 
         <!-- Menu Mobile -->
         <ul id="mobile-navbar" class="sidenav">
-            <li><a href="liste_distributeur.php">Liste Distri</a></li>
-            <li><a href="liste_boulanger.php">Liste Boulanger</a></li>
-            <li><a href="stats.php">Statistiques</a></li>
+            <li><a href="liste_distributeur.php">{$M_listeD}</a></li>
+            <li><a href="liste_boulanger.php">{$M_listeB}</a></li>
+            <li><a href="stats.php">{$M_stat}</a></li>
             <li class="divider"></li>
             <li><a href="deconnection.php" id="deco"><i class="material-icons">power_settings_new</i></a></li>
         </ul>
             <section id="sresp">
                 <section id="s1"> 
-                    <h4 class="center">Boulanger</h4>
+                    <h4 class="center">{$S_BoulangerModif}</h4>
                     <table class="centered">
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Jour</th>
-                                <th>Semaine</th>
-                                <th>Mois</th>
+                                <th>{$DA_name}</th>
+                                <th>{$S_jour}</th>
+                                <th>{$S_sem}</th>
+                                <th>{$S_mois}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,8 +70,8 @@
                     <table class="centered"> 
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Jour</th>
+                                <th>{$DA_name}</th>
+                                <th>{$S_jour}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,4 +120,5 @@
         </footer>
     </body>
 </html>
+
 
