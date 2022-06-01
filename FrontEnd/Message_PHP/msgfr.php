@@ -1,67 +1,53 @@
 <?php
-//Variable dans la page d'accueil
+//Variable générale
 $A_page = "DistriBaguette";
 $A_title = "NOS DISTRIBUTEURS";
 $A_nom_distri = "Distributeur 1";
 $A_desc = "DESCRIPTION";
-$A_data = "Affichage des donnees";
 $A_footertitle = "DistriBaguette";
 $A_projet = "Projet 2022";
 
-//Tableau de donnés
+//Tableau de donnés acceuil 
 $D_stock = "STOCK";
-$D_etat = "ETAT";
 $D_loca = "LOCALISATION";
 $D_boulanger = "BOULANGER";
 
-//Accueil Admin
-$AA_admin = "ADMIN";
-$AA_par = "Editer";
-$AA_liste = "Liste";
-$AA_arch = "Archive";
-$AA_titledistri = "Distributeurs";
-$AA_titleboul = "Boulangers";
-$AA_monna = "Monnayeur";
-
-// Tableau de donnés ADMINISTRATION
+//Tableau liste Distributeur
 $DA_num = "Num";
 $DA_name = "Nom";
 $DA_stock = "Stock";
 $DA_loc = "Localisation";
 
+//Tableau liste Boulanger
 $BA_name_B = "Nom / Prenom";
 $BA_mail_B = "Adresse mail";
 $BA_tel_B = "Telephone";
-
 $BA_num_B = "Num";
 
 //Service Authentifiaction
-$S_admin = "Service Admin";
 $S_connect = "Connexion";
-
-//Service parametrage
-$S_Boulanger = "Ajouter un boulanger";
-$S_Distributeur = "Ajouter un distributeur";
-
-//Service Archives
-$SA_stat_distri = "Statistique journalier des distributeurs";
-$SA_nomDistri = "Nom distributeur";
-$SA_vente = "Baguettes vendues / jour";
-$SA_date = "Date";
-
-//Service monnayeur
-$SA_monnayeur = "Monnayeur";
-$SA_nombre_bag_achete = "Nombre de baguettes achetées";
 
 //Service erreur
 $SE_erreur = "ERREUR DE CONNEXION";
 $SE_retour = "RETOUR";
 
 //Service Distributeur Modif
-$S_DistributeurModif = "Modification du distributeur";
+$S_DistributeurModif = "Distributeur";
+$S_ajout = "Ajouter";
 
 //Service Boulanger Modif
-$S_BoulangerModif = "Modification du boulanger";
+$S_BoulangerModif = "Boulanger";
+$S_modif = "Modifier";
+
+//Menu
+$M_listeB = "Liste Boulanger";
+$M_listeD = "Liste Distributeur";
+$M_stat = "Statistiques";
+
+//Page stats
+$S_jour = "Jour";
+$S_sem = "Semaine";
+$S_mois = "Mois";
 
 // ID 
 $id = "id";
