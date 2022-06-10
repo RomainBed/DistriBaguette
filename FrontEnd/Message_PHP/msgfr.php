@@ -17,6 +17,7 @@ $DA_num = "Num";
 $DA_name = "Nom";
 $DA_stock = "Stock";
 $DA_loc = "Localisation";
+$DA_etat = "Etat";
 
 //Tableau liste Boulanger
 $BA_name_B = "Nom / Prenom";
