@@ -20,7 +20,7 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">{$M_listeB}</a>
+                    <a href="#" class="brand-logo center">{$S_ajout}</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a> <!--Menu déroulant-->
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -53,7 +53,7 @@
                         <form method="POST"> <!--Recupère les données afin de les ajouter dans la BDD-->
                             <div class="card-content">
                                 <div class="row center-align">
-                                    <span class="card-title grey-text text-darken-4 center-align">{$S_ajout}</span>
+                                    <span class="card-title grey-text text-darken-4 center-align">{$S_BoulangerModif}</span>
                                     <div class="input-field col s6">
                                         <input value="{$BA_name_B_1}" placeholder="Nom" type="text" name="nom_boulanger" required>
                                     </div>
@@ -64,7 +64,7 @@
                                         <input value="{$BA_mail_B_1}" type="text" placeholder="Mail" name="mail" required>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input value="{$BA_tel_B_1}" type="text" placeholder="Numéro de téléphone" name="téléphone" required>
+                                        <input value="{$BA_tel_B_1}" type="text" placeholder="Numéro de téléphone" name="telephone" required>
                                     </div>
                                 </div>
                                 <input type="submit" class="waves-effect waves-light btn" value='Envoyer' name="submit" />

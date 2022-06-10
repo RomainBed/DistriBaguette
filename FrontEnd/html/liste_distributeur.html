@@ -20,7 +20,7 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">{$M_listeB}</a>
+                    <a href="#" class="brand-logo center">{$M_listeD}</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a> <!--Menu déroulant-->
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -48,6 +48,7 @@
         
             <main>
                 <!--Liste distributeur-->
+			    <form method="GET">
                 <section id="s2"> 
                     <h4 id="s2h4">{$AA_titledistri}</h4>
                     <table class="centered">
@@ -57,6 +58,7 @@
                             <th>{$DA_name}</th>
                             <th>{$DA_stock}</th>
                             <th>{$DA_loc}</th>
+							<th>{$DA_etat}</th>
                         </tr>
                         </thead>
 
@@ -67,6 +69,7 @@
                             <td>{$DA_name_1}</td>
                             <td>{$DA_stock_1}</td>
                             <td>{$DA_loc_1}</td>
+							<td>{$DA_etat_1}</td>
                             <td><a type="submit" href="modif_distri.php?id_distributeur={$id_distributeur}" class="btn-floating grey darken-3"><i class="material-icons">mode_edit</i></a></td>
                             <td><button type="submit" value="{$id_distributeur}" name="id_distributeur" class="btn-floating grey darken-3"><i class="material-icons">delete</i></a></button></td>
                         </tr>
@@ -74,6 +77,7 @@
                         </tbody>
                     </table>	
                 </section>
+				</form>
             </main>
 		<!-- bouton flottant -->	
 		<div class="fixed-action-btn vertical">

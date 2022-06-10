@@ -20,7 +20,7 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper yellow accent-4">
-                    <a href="#" class="brand-logo center">{$M_listeB}</a>
+                    <a href="#" class="brand-logo center">{$S_modif}</a>
                     <a href="#" data-target="mobile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a> <!--Menu déroulant-->
                     <ul id="navbar-items" class="left hide-on-med-and-down">
                         <li><a class="dropdown-trigger" data-target="dropdown-menu" href="#">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -47,12 +47,12 @@
         </ul>
         <div ng-app="FireCart" ng-controller="AuthController">
             <div class="row center">
-                <div class="col s12 m10 offset-m1 l6 offset-l3"> <!--Cadre-->
-                    <div class="card sticky-action z-depth-4 card-panel hoverable">
+                <div class="col s12 m10 offset-m1 l6 offset-l3"> <!--Position Cadre-->
+                    <div class="card sticky-action z-depth-4 card-panel hoverable"> <!--Fond cadre-->
                         <form method="POST"> <!--Rempli les informations-->
                             <div class="card-content">
                                 <div class="row center-align">
-                                    <span class="card-title grey-text text-darken-4 center-align">{$S_modif}</span>
+                                    <span class="card-title grey-text text-darken-4 center-align">{$S_DistributeurModif}</span>
                                     <div class="input-field col s12">
                                         <input type="text" value="{$DA_name_1}" placeholder="Nom" name="nom_distri" required>
                                     </div>
